@@ -1,0 +1,374 @@
+<?xml version='1.0'?>
+<sdf version='1.5'>
+	<model name="roboarm1">
+		<static>false</static>
+		<pose>0 0 0.05 0 0 0</pose>
+			<link name='chassis'>
+		<self_collide>true</self_collide>
+		<must_be_base_link>1</must_be_base_link>
+		<inertial><mass>5</mass></inertial>
+				<pose>0 0 0 0 0 0</pose>
+				<collision name='collision'>
+				<geometry>
+					<cylinder>
+						<radius>1.6</radius>
+						<length>.1</length>
+					</cylinder>
+				</geometry>
+				<surface>
+				<friction>
+				  <ode>
+				    <mu>1.0</mu>
+				    <mu2>1.0</mu2>
+				   </ode>
+ 			<bullet>
+		           <friction>1.0</friction>
+		           <friction2>1.0</friction2>
+		         
+		         </bullet>
+				</friction>
+			     </surface>
+				</collision>
+
+				<visual name='visual'>
+				<geometry>
+					<cylinder>
+						<radius>1.6</radius>
+						<length>.1</length>
+					</cylinder>
+				</geometry>
+				 <material>
+    					<ambient>0 0 1 1</ambient>
+    					<diffuse>0 0 1 1</diffuse>
+    					<specular>0.1 0.1 0.1 1</specular>
+    					<emissive>0 0 0 0</emissive>
+  				</material>
+				</visual>
+			</link>		
+		<link name="shape1">
+			<pose>0 0 0.4 0 0 0</pose>
+		
+		    <collision name='caster_collision_base'>
+			    <pose>0 0 0 0 0 0</pose>
+			    <geometry>
+				<cylinder>
+					<radius>.1</radius>
+					<length>.1</length>
+				</cylinder>
+
+			    </geometry>
+
+			    <surface>
+			      <friction>
+				<ode>
+				  <mu>0</mu>
+				  <mu2>0</mu2>
+				  <slip1>1.0</slip1>
+				  <slip2>1.0</slip2>
+				</ode>
+			      </friction>
+			    </surface>
+		  </collision>
+
+			  <visual name='caster_visual_base'>
+			    <pose>0 0 -.35 0 0 0</pose>
+			    <geometry>
+			      <cylinder>
+					<radius>.1</radius>
+					<length>.05</length>
+				</cylinder>
+			    </geometry>
+				 <material>
+    					<ambient>1 1 0 1</ambient>
+    					<diffuse>1 1 0 1</diffuse>
+    					<specular>0.1 0.1 0.1 1</specular>
+    					<emissive>0 0 0 0</emissive>
+  				</material>
+			  </visual>     			
+
+
+
+			<collision name="collision">
+				<geometry>
+					<cylinder>
+						<radius>.05</radius>
+						<length>.8</length>
+					</cylinder>
+				</geometry>
+			</collision>
+			<visual name="visual">
+				<geometry>
+					<cylinder>
+						<radius>.05</radius>
+						<length>.8</length>
+					</cylinder>
+				</geometry>
+				<material>
+    					<ambient>0 0 1 1</ambient>
+    					<diffuse>0 0 1 1</diffuse>
+    					<specular>0.1 0.1 0.1 1</specular>
+    					<emissive>0 0 0 0</emissive>
+  				</material>
+			</visual>
+		
+		    <collision name='caster_collision_shape1'>
+			    <pose>0 0 .4 0 1.5707 1.5707</pose>
+			    <geometry>
+				<cylinder>
+					<radius>.1</radius>
+					<length>.1</length>
+				</cylinder>
+			    </geometry>
+
+			    <surface>
+			      <friction>
+				<ode>
+				  <mu>0</mu>
+				  <mu2>0</mu2>
+				  <slip1>1.0</slip1>
+				  <slip2>1.0</slip2>
+				</ode>
+			      </friction>
+			    </surface>
+		  </collision>
+
+			  <visual name='caster_visual_shape1'>
+			    <pose>0 0 .4 0 1.5707 1.5707</pose>
+			    <geometry>
+			      <cylinder>
+					<radius>.1</radius>
+					<length>.1</length>
+				</cylinder>
+			    </geometry>
+				 <material>
+    					<ambient>1 1 0 1</ambient>
+    					<diffuse>1 1 0 1</diffuse>
+    					<specular>0.1 0.1 0.1 1</specular>
+    					<emissive>0 0 0 0</emissive>
+  				</material>
+			  </visual>         
+
+		 </link>
+		<link name="shape2">
+		<self_collide>true</self_collide>
+			<pose>0 0 1.2 0 0 0</pose>
+			<collision name="collision">
+				<geometry>
+					<cylinder>
+						<radius>.05</radius>
+						<length>.8</length>
+					</cylinder>
+				</geometry>
+			</collision>
+			<visual name="visual">
+				<geometry>
+					<cylinder>
+						<radius>.05</radius>
+						<length>.8</length>
+					</cylinder>
+				</geometry>
+				 <material>
+    					<ambient>0 0 1 1</ambient>
+    					<diffuse>0 0 1 1</diffuse>
+    					<specular>0.1 0.1 0.1 1</specular>
+    					<emissive>0 0 0 0</emissive>
+  				</material>
+			</visual>
+		    <collision name='caster_collision_shape2'>
+			    <pose>0 0 .4 0 1.5707 1.5707</pose>
+			    <geometry>
+				<cylinder>
+					<radius>.1</radius>
+					<length>.1</length>
+				</cylinder>
+			    </geometry>
+
+			    <surface>
+			      <friction>
+				<ode>
+				  <mu>0</mu>
+				  <mu2>0</mu2>
+				  <slip1>1.0</slip1>
+				  <slip2>1.0</slip2>
+				</ode>
+			      </friction>
+			    </surface>
+		  </collision>
+
+			  <visual name='caster_visual_shape2'>
+			    <pose>0 0 .4 0 1.5707 1.5707</pose>
+			    <geometry>
+			      <cylinder>
+					<radius>.1</radius>
+					<length>.1</length>
+				</cylinder>
+			    </geometry>
+				 <material>
+    					<ambient>1 1 0 1</ambient>
+    					<diffuse>1 1 0 1</diffuse>
+    					<specular>0.1 0.1 0.1 1</specular>
+    					<emissive>0 0 0 0</emissive>
+  				</material>
+			  </visual>     
+		</link>
+		<link name="shape3">
+		<self_collide>true</self_collide>
+			<pose>0 0 2 0 0 0</pose>
+			<collision name="collision">
+				<geometry>
+					<cylinder>
+						<radius>.05</radius>
+						<length>.8</length>
+					</cylinder>
+
+				</geometry>
+			</collision>
+			<visual name="visual">
+				<geometry>
+					<cylinder>
+						<radius>.05</radius>
+						<length>.8</length>
+					</cylinder>
+				</geometry>
+				 <material>
+    					<ambient>0 0 1 1</ambient>
+    					<diffuse>0 0 1 1</diffuse>
+    					<specular>0.1 0.1 0.1 1</specular>
+    					<emissive>0 0 0 0</emissive>
+  				</material>
+			</visual>
+		</link>
+		<link name="sensorShape">
+		<self_collide>true</self_collide>
+			 <pose>0 0 2.49 0 1.5707 1.5707</pose>
+			<collision name='caster_collision_shape3'>
+			   
+			    <geometry>
+				<sphere>
+               			 <radius>.1</radius>
+             			 </sphere>
+			    </geometry>
+			</collision>
+
+			  <visual name='caster_visual_shape3'>
+			   
+			    <geometry>
+			     <sphere>
+                		<radius>.1</radius>
+              		    </sphere>
+			    </geometry>
+				 <material>
+    					<ambient>1 .4 0 1</ambient>
+    					<diffuse>1 .4 0 1</diffuse>
+    					<specular>0.1 0.1 0.1 1</specular>
+    					<emissive>0 0 0 0</emissive>
+  				</material>
+			  </visual>
+		 	<!--
+			<sensor name='main_sensor' type='contact'>
+			  <plugin name="main_sensor_plugin" filename="/home/enrique/gazeboTesis/gazebo_tesis/build/libmainSensorPlugin.so"/>
+			  <contact>
+			    <collision>caster_collision_shape3</collision>
+			  </contact>
+			 
+			</sensor>     -->
+		</link>
+		<link name="metaGFM">
+		   <pose>.3 .3 .15 0 0 0</pose>
+		   <inertial><mass>10</mass></inertial>
+		   <collision name="collision">
+		      <geometry>
+			  <box>
+			     <size>.2 .2 .2</size>
+			  </box>
+		      </geometry>
+		     <surface>
+		       <friction>
+		         <ode>
+		           <mu>1.0</mu>
+		           <mu2>1.0</mu2>
+		         
+		         </ode>
+		       
+		         <bullet>
+		           <friction>1.0</friction>
+		           <friction2>1.0</friction2>
+		         
+		         </bullet>
+		       </friction>
+		     </surface>
+		   </collision>
+		   <visual name="visual">
+		      <geometry>
+			  <box>
+			     <size>.2 .2 .2</size>
+			  </box>
+		      </geometry>
+		      <material>
+			  <ambient>0 1 0 1</ambient>
+			  <diffuse>0 1 0 1</diffuse>
+			  <specular>0.1 0.1 0.1 1</specular>
+			  <emissive>0 0 0 0</emissive>
+		      </material>
+		   </visual>
+		</link>
+
+
+		<joint type="revolute" name="shape1_revolute">
+			<pose>0 0 -.4 0 0 0</pose>
+			<child>shape1</child>
+			<parent>chassis</parent>
+			<axis>
+				<xyz>0 0 1</xyz>
+				<dynamics>
+					<friction>1000</friction>
+				</dynamics>
+			</axis>
+		</joint>		
+		<joint type="revolute" name="shape2_revolute">
+			<pose>0 0 -.4 0 0 0</pose>
+			<child>shape2</child>
+			<parent>shape1</parent>
+			<axis>
+				<xyz>0 1 0</xyz>
+				<dynamics>
+					<friction>100</friction>
+				</dynamics>
+			</axis>
+		</joint>
+		<joint type="revolute" name="shape3_revolute">
+			<pose>0 0 -.4 0 0 0</pose>
+			<child>shape3</child>
+			<parent>shape2</parent>
+			<axis>
+				<xyz>0 1 0</xyz>
+				<dynamics>
+					<friction>100</friction>
+				</dynamics>
+			</axis>
+		</joint>
+		<joint name="fixed to ground" type="revolute">
+  			<parent>world</parent>
+  			<child>roboarm1::chassis</child>
+			<axis>
+			 <limit>
+			   <lower>0</lower>
+			   <upper>0</upper>
+			 </limit>
+			 <xyz>0 0 1</xyz>
+			 </axis>
+	    </joint>
+	<joint name="fixedSensor" type="revolute">
+  			<parent>sensorShape</parent>
+  			<child>shape3</child>
+			<axis>
+			 <limit>
+			   <lower>0</lower>
+			   <upper>0</upper>
+			 </limit>
+			 <xyz>0 0 1</xyz>
+			 </axis>
+	    </joint>
+<!--<plugin name="armController" filename="build/libarmController.so"/>-->
+ </model>
+</sdf>

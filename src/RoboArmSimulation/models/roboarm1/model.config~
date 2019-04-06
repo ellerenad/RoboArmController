@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<model>
+  <name>My Cuadruped</name>
+  <version>1.0</version>
+  <sdf version='1.5'>roboarm1.sdf</sdf>
+
+  <author>
+   <name>Enrique</name>
+   <email>ellerenad@hotmail.com</email>
+  </author>
+
+  <description>
+    First robotic arm
+  </description>
+</model>

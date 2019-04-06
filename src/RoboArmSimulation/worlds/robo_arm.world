@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <world name="default">
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <!-- A ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- A testing model that includes the robo_arm model -->
+    <model name="my_robo_arm">
+      <include>
+        <uri>model://roboarm1</uri>
+      </include>
+
+      <!-- Attach the plugin to this model -->
+      <plugin name="robo_arm_control" filename="librobo_arm_plugin.so"/>
+    </model>
+
+  </world>
+</sdf>
