@@ -18,7 +18,7 @@ public class LeapMotionHandler extends WebSocketClient {
     public void onOpen(ServerHandshake serverHandshake) {
         log.info("WebSocket Opened");
 
-        this.send("{focused: true}");
+        this.send("{\"focused\": true}");
     }
 
     public void onMessage(String s) {

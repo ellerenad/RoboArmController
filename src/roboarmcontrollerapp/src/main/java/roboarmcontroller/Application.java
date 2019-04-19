@@ -12,9 +12,10 @@ public class Application {
 
         URI uri;
         try {
-            //uri = new URI("ws://localhost:6437/v7.json");
-            uri = new URI("ws://localhost:6437");
+            uri = new URI("ws://localhost:6437/v7.json");
+
             LeapMotionHandler leapMotionHandler = new LeapMotionHandler(uri);
+
             leapMotionHandler.connect();
         } catch (URISyntaxException e) {
             e.printStackTrace();
