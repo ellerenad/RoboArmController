@@ -21,3 +21,5 @@ Visualizer
 LeapControlPanel
 LeapControlPanel --showsettings
 
+###Websocket info:
+https://developer-archive.leapmotion.com/documentation/java/supplements/Leap_JSON.html
