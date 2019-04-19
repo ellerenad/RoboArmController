@@ -10,7 +10,7 @@ public class Application {
 
     public static void main(String...args){
 
-        URI uri = null;
+        URI uri;
         try {
             //uri = new URI("ws://localhost:6437/v7.json");
             uri = new URI("ws://localhost:6437");
