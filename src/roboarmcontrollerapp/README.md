@@ -1,6 +1,9 @@
 # RoboArmControllerApp
 
-Maven based project. Reads the data from the websocket and transforms it to our preferred domain.
+Maven based project. 
+
+Reads the data from the websocket, cleans it and transforms it to our preferred domain model.
+
 On this version, this app also transforms the domain into instructions for the robot simulation.
 
 Start point: Application.java

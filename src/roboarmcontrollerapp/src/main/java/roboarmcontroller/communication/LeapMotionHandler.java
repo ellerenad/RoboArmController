@@ -10,6 +10,8 @@ import java.net.URI;
 public class LeapMotionHandler extends WebSocketClient {
     private final Logger log = LoggerFactory.getLogger(LeapMotionHandler.class);
 
+    private DataPublisher dataPublisher = new DataPublisher();
+
     public LeapMotionHandler(URI uri){
         super(uri);
     }
@@ -28,8 +30,9 @@ public class LeapMotionHandler extends WebSocketClient {
     /*
         This method gets called evertime the websocket receives a message
      */
-    public void onMessage(String s) {
-        log.info("Message Received {}", s);
+    public void onMessage(String json) {
+        log.debug("Message Received {}", json);
+        dataPublisher.publish(json);
     }
 
     public void onClose(int i, String s, boolean b) {
