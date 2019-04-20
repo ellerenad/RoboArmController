@@ -10,10 +10,14 @@ import java.net.URI;
 public class LeapMotionHandler extends WebSocketClient {
     private final Logger log = LoggerFactory.getLogger(LeapMotionHandler.class);
 
-
     public LeapMotionHandler(URI uri){
         super(uri);
     }
+
+    public void startListener() {
+        connect();
+    }
+
 
     public void onOpen(ServerHandshake serverHandshake) {
         log.info("WebSocket Opened");
@@ -21,6 +25,9 @@ public class LeapMotionHandler extends WebSocketClient {
         this.send("{\"focused\": true}");
     }
 
+    /*
+        This method gets called evertime the websocket receives a message
+     */
     public void onMessage(String s) {
         log.info("Message Received {}", s);
     }

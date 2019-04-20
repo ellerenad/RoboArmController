@@ -12,11 +12,12 @@ public class Application {
 
         URI uri;
         try {
+            // TODO: Extract to properties config file
             uri = new URI("ws://localhost:6437/v7.json");
 
             LeapMotionHandler leapMotionHandler = new LeapMotionHandler(uri);
 
-            leapMotionHandler.connect();
+            leapMotionHandler.startListener();
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
