@@ -2,7 +2,7 @@ package roboarmcontroller.communication.parser;
 
 import com.google.gson.Gson;
 
-public class JsonParser {
+public class JsonTrackingFrameParser {
 
     private Gson gson = new Gson();
 

@@ -3,15 +3,16 @@ package roboarmcontroller.communication.parser;
 import com.google.gson.annotations.SerializedName;
 
 import java.math.BigInteger;
+import java.util.List;
 
 public class JsonTrackingFrame {
     private int id;
 
     @SerializedName("hands")
-    private JsonHand[] jsonHands;
+    private List<JsonHand> jsonHands;
 
     @SerializedName("pointables")
-    private JsonPointable[] jsonPointables;
+    private List<JsonPointable> jsonPointables;
 
     private BigInteger timestamp;
 
@@ -23,19 +24,19 @@ public class JsonTrackingFrame {
         this.id = id;
     }
 
-    public JsonHand[] getJsonHands() {
+    public List<JsonHand> getJsonHands() {
         return jsonHands;
     }
 
-    public void setJsonHands(JsonHand[] jsonHands) {
+    public void setJsonHands(List<JsonHand> jsonHands) {
         this.jsonHands = jsonHands;
     }
 
-    public JsonPointable[] getJsonPointables() {
+    public List<JsonPointable> getJsonPointables() {
         return jsonPointables;
     }
 
-    public void setJsonPointables(JsonPointable[] jsonPointables) {
+    public void setJsonPointables(List<JsonPointable> jsonPointables) {
         this.jsonPointables = jsonPointables;
     }
 
