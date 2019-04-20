@@ -20,61 +20,61 @@ public class JsonParserTest {
     @Test
     public void testParseOneHand() throws IOException {
         String jsonToTest = readFileFromResources("json/oneHand.json");
-        TrackingFrame trackingFrame = jsonParser.parse(jsonToTest);
+        JsonTrackingFrame jsonTrackingFrame = jsonParser.parse(jsonToTest);
 
-        assertNotNull(trackingFrame);
+        assertNotNull(jsonTrackingFrame);
 
-        assertNotNull(trackingFrame.getHands());
-        assertEquals(1, trackingFrame.getHands().length);
-        Hand hand1 = trackingFrame.getHands()[0];
-        assertEquals("left", hand1.getType());
+        assertNotNull(jsonTrackingFrame.getJsonHands());
+        assertEquals(1, jsonTrackingFrame.getJsonHands().length);
+        JsonHand jsonHand1 = jsonTrackingFrame.getJsonHands()[0];
+        assertEquals("left", jsonHand1.getType());
 
-        assertNotNull(trackingFrame.getPointables());
-        assertEquals(5, trackingFrame.getPointables().length);
+        assertNotNull(jsonTrackingFrame.getJsonPointables());
+        assertEquals(5, jsonTrackingFrame.getJsonPointables().length);
 
 
         // Thumb
-        Pointable pointable = trackingFrame.getPointables()[0];
-        assertEquals(0, pointable.getType());
-        assertFalse(pointable.isExtended());
+        JsonPointable jsonPointable = jsonTrackingFrame.getJsonPointables()[0];
+        assertEquals(0, jsonPointable.getType());
+        assertFalse(jsonPointable.isExtended());
 
         // Index
-        pointable = trackingFrame.getPointables()[1];
-        assertEquals(1, pointable.getType());
-        assertFalse(pointable.isExtended());
+        jsonPointable = jsonTrackingFrame.getJsonPointables()[1];
+        assertEquals(1, jsonPointable.getType());
+        assertFalse(jsonPointable.isExtended());
 
         // MIDDLE
-        pointable = trackingFrame.getPointables()[2];
-        assertEquals(2, pointable.getType());
-        assertTrue(pointable.isExtended());
+        jsonPointable = jsonTrackingFrame.getJsonPointables()[2];
+        assertEquals(2, jsonPointable.getType());
+        assertTrue(jsonPointable.isExtended());
 
         // RING
-        pointable = trackingFrame.getPointables()[3];
-        assertEquals(3, pointable.getType());
-        assertTrue(pointable.isExtended());
+        jsonPointable = jsonTrackingFrame.getJsonPointables()[3];
+        assertEquals(3, jsonPointable.getType());
+        assertTrue(jsonPointable.isExtended());
 
        // PINKY
-        pointable = trackingFrame.getPointables()[4];
-        assertEquals(4, pointable.getType());
-        assertTrue(pointable.isExtended());
+        jsonPointable = jsonTrackingFrame.getJsonPointables()[4];
+        assertEquals(4, jsonPointable.getType());
+        assertTrue(jsonPointable.isExtended());
 
     }
 
     @Test
     public void testParseTwoHands() throws IOException {
         String jsonToTest = readFileFromResources("json/twoHands.json");
-        TrackingFrame trackingFrame = jsonParser.parse(jsonToTest);
+        JsonTrackingFrame jsonTrackingFrame = jsonParser.parse(jsonToTest);
 
-        assertNotNull(trackingFrame);
+        assertNotNull(jsonTrackingFrame);
 
-        assertNotNull(trackingFrame.getHands());
-        assertEquals(2, trackingFrame.getHands().length);
+        assertNotNull(jsonTrackingFrame.getJsonHands());
+        assertEquals(2, jsonTrackingFrame.getJsonHands().length);
 
-        Hand hand1 = trackingFrame.getHands()[0];
-        assertEquals("right", hand1.getType());
+        JsonHand jsonHand1 = jsonTrackingFrame.getJsonHands()[0];
+        assertEquals("right", jsonHand1.getType());
 
-        Hand hand2 = trackingFrame.getHands()[1];
-        assertEquals("left", hand2.getType());
+        JsonHand jsonHand2 = jsonTrackingFrame.getJsonHands()[1];
+        assertEquals("left", jsonHand2.getType());
     }
 
 

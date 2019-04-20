@@ -1,6 +1,6 @@
 package roboarmcontroller.communication.parser;
 
-public class Pointable {
+public class JsonPointable {
     private int id;
     private int handId;
     private boolean extended;

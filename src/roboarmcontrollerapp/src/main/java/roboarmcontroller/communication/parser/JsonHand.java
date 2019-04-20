@@ -1,6 +1,6 @@
 package roboarmcontroller.communication.parser;
 
-public class Hand {
+public class JsonHand {
     private int id;
     private float confidence;
     private String type;

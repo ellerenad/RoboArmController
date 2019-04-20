@@ -6,12 +6,12 @@ public class JsonParser {
 
     private Gson gson = new Gson();
 
-    public TrackingFrame parse(String json){
-        TrackingFrame trackingFrame ;
+    public JsonTrackingFrame parse(String json) {
+        JsonTrackingFrame jsonTrackingFrame;
 
-        trackingFrame = gson.fromJson(json, TrackingFrame.class);
+        jsonTrackingFrame = gson.fromJson(json, JsonTrackingFrame.class);
 
-        return  trackingFrame;
+        return jsonTrackingFrame;
     }
 
 }
