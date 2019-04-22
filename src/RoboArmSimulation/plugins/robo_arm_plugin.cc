@@ -1,5 +1,3 @@
-#ifndef _VELODYNE_PLUGIN_HH_
-#define _VELODYNE_PLUGIN_HH_
 
 #include <gazebo/gazebo.hh>
 #include <gazebo/physics/physics.hh>
@@ -47,65 +45,47 @@ namespace gazebo
 		this->model->GetJointController()->SetPositionPID(this->joint2->GetScopedName(), this->pid2);
 		this->model->GetJointController()->SetPositionPID(this->joint3->GetScopedName(), this->pid3);
 
-      // Default to zero velocity
-      double velocity = 0;
-
-      // this->SetVelocity(velocity);
-
-		this->InitJointsPosition();
+      this->InitJointsPosition();
 
       // Create the node
       this->node = transport::NodePtr(new transport::Node());
-      #if GAZEBO_MAJOR_VERSION < 8
-      this->node->Init(this->model->GetWorld()->GetName());
-      #else
       this->node->Init(this->model->GetWorld()->Name());
-      #endif
 
       // Create a topic name
-      std::string topicName = "~/remote_ctrl_robo_arm/vel_cmd";
+      std::string topicName = "~/remote_ctrl_robo_arm/pos_cmd";
 
       // Subscribe to the topic, and register a callback
        this->sub = this->node->Subscribe(topicName, &RoboArmPlugin::OnMsg, this);
     }
 
-    /// \brief Set the velocity of the Velodyne
-    /// \param[in] _vel New target velocity
-	/// TODO: Fix for the 3 joints
-    public: void SetVelocity(const double &_vel)
-    {
-		std::cout << "this->joint1->GetScopedName() " << this->joint1->GetScopedName();      
-		// Set the joint's target velocity.
-		this->model->GetJointController()->SetVelocityTarget(
-				  this->joint1->GetScopedName(), _vel);
-    }
 
-    /// \brief TODO: EXPERIMENT! Set the new position of the joint
-    /// \param[in] _vel New target velocity
-    public: void DeltaPosition(const int jointNumber, const double &_deltaPos)
+    /// \brief Set the new position of the joint
+    /// \param[in] jointNumber id of the joint to change
+    /// \param[in] _deltaPos Change of the position
+    public: void DeltaPosition(const int jointNumber, const double deltaPos)
     {
 		physics::JointPtr joint;
 		
 		switch(jointNumber)
 		{
-			case 1: joint = this->joint1;
-					this->model->GetJointController()->SetJointPosition(joint, this->positionJoint1 + _deltaPos);
-					this->positionJoint1 += _deltaPos;
+			case 1:
+			        this->positionJoint1 += deltaPos;
+					this->model->GetJointController()->SetJointPosition(this->joint1, this->positionJoint1);
+
 					break;
-			case 2: joint = this->joint2;
-					this->model->GetJointController()->SetJointPosition(joint, this->positionJoint2 + _deltaPos);
-					this->positionJoint2 += _deltaPos;
+			case 2:
+					this->positionJoint2 += deltaPos;
+					this->model->GetJointController()->SetJointPosition(this->joint2, this->positionJoint2);
 					break;
-			case 3: joint = this->joint3;
-					this->model->GetJointController()->SetJointPosition(joint, this->positionJoint3 + _deltaPos);
-					this->positionJoint3 += _deltaPos;
+			case 3:
+					this->positionJoint3 += deltaPos;
+					this->model->GetJointController()->SetJointPosition(this->joint3, this->positionJoint3);
 					break;
 		}
 		
     }
 
-    /// \brief TODO: EXPERIMENT! Init the position of the joint
-    /// \param[in] _vel New target velocity
+    /// \brief Init the position of the joint
     public: void InitJointsPosition()
     {
 		// Set the joint's target position.
@@ -121,8 +101,7 @@ namespace gazebo
     /// \param[in] _msg Repurpose a vector3 message.
     private: void OnMsg(ConstVector3dPtr &_msg)
     {
-		std::cout << "Message received. Joint number:" << _msg->x() << " Param: "<< _msg->y() <<"\n";       
-		//this->SetVelocity(_msg->x());
+		std::cout << "Message received. Joint number:" << _msg->x() << " Delta: "<< _msg->y() <<"\n";
 		 this->DeltaPosition(_msg->x(), _msg->y());
     }
 
@@ -163,4 +142,4 @@ namespace gazebo
   // Tell Gazebo about this plugin, so that Gazebo can call Load on this plugin.
   GZ_REGISTER_MODEL_PLUGIN(RoboArmPlugin)
 }
-#endif
+

@@ -10,16 +10,16 @@ Repository for the Roboarm controller
 
 
 
-##Start leapmotion
+## Start leapmotion
 
 sudo leapd
 
-###Other important commands
+### Other important commands
 
 cd .Leap\ Motion/
 Visualizer
 LeapControlPanel
 LeapControlPanel --showsettings
 
-###Websocket info:
+### Websocket info:
 https://developer-archive.leapmotion.com/documentation/java/supplements/Leap_JSON.html
