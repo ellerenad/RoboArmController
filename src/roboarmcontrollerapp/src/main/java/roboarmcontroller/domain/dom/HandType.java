@@ -1,4 +1,4 @@
-package roboarmcontroller.domain;
+package roboarmcontroller.domain.dom;
 
 public enum HandType {
     LEFT,

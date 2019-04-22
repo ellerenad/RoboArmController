@@ -4,8 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import roboarmcontroller.communication.parser.JsonTrackingFrame;
 import roboarmcontroller.communication.parser.JsonTrackingFrameParser;
-import roboarmcontroller.domain.InstructionService;
-import roboarmcontroller.domain.TrackingFrame;
+import roboarmcontroller.domain.dom.TrackingFrame;
+import roboarmcontroller.domain.services.InstructionService;
 
 import java.math.BigInteger;
 

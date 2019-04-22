@@ -1,4 +1,4 @@
-package roboarmcontroller.domain;
+package roboarmcontroller.domain.dom;
 
 public class Finger {
     private int id;

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import roboarmcontroller.communication.parser.JsonTrackingFrame;
 import roboarmcontroller.communication.parser.JsonTrackingFrameParser;
-import roboarmcontroller.domain.*;
+import roboarmcontroller.domain.dom.*;
 
 import java.io.BufferedReader;
 import java.io.File;

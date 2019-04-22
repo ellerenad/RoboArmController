@@ -1,6 +1,7 @@
-package roboarmcontroller.domain;
+package roboarmcontroller.domain.dom;
 
 import java.util.List;
+import java.util.Optional;
 
 public class Hand {
 
@@ -8,6 +9,11 @@ public class Hand {
     private float confidence;
     private HandType type;
     private List<Finger> fingers;
+
+    public Optional<Finger> getFinger(FingerType fingerType) {
+        return this.getFingers().stream().filter(finger -> finger.getType().equals(fingerType)).findFirst();
+    }
+
 
     public int getId() {
         return id;

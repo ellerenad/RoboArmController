@@ -3,7 +3,7 @@ package roboarmcontroller.communication;
 import roboarmcontroller.communication.parser.JsonHand;
 import roboarmcontroller.communication.parser.JsonPointable;
 import roboarmcontroller.communication.parser.JsonTrackingFrame;
-import roboarmcontroller.domain.*;
+import roboarmcontroller.domain.dom.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
