@@ -12,7 +12,7 @@ public class LeapMotionHandler extends WebSocketClient {
 
     private DataPublisher dataPublisher = new DataPublisher();
 
-    public LeapMotionHandler(URI uri){
+    public LeapMotionHandler(URI uri) {
         super(uri);
     }
 
@@ -20,26 +20,24 @@ public class LeapMotionHandler extends WebSocketClient {
         connect();
     }
 
-
     public void onOpen(ServerHandshake serverHandshake) {
         log.info("WebSocket Opened");
-
         this.send("{\"focused\": true}");
     }
 
     /*
-        This method gets called evertime the websocket receives a message
-     */
+      This method gets called every time the web socket receives a message
+    */
     public void onMessage(String json) {
         log.debug("Message Received {}", json);
         dataPublisher.publish(json);
     }
 
-    public void onClose(int i, String s, boolean b) {
-        log.info("WebSocket Closed");
+    public void onClose(int code, String reason, boolean remote) {
+        log.info("WebSocket Closed. Code={}, Reason={}, Remote={}", code, reason, remote);
     }
 
     public void onError(Exception e) {
-        log.info("WebSocket Error");
+        log.info("WebSocket Error", e);
     }
 }

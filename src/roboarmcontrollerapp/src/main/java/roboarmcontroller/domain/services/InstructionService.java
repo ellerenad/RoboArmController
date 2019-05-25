@@ -4,14 +4,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import roboarmcontroller.domain.dom.*;
 import roboarmcontroller.domain.services.command.CommandExecutor;
-import roboarmcontroller.domain.services.command.Parameters;
+import roboarmcontroller.domain.services.command.CommandParameters;
 
 import java.util.Optional;
 
+@SuppressWarnings("WeakerAccess")
 public class InstructionService {
     private final Logger log = LoggerFactory.getLogger(InstructionService.class);
 
-    private final double DELTA = 0.01;
+    private final int DELTA = 10;
     private final int SERVOS_COUNT = 3;
     private CommandExecutor commandExecutor;
 
@@ -24,26 +25,23 @@ public class InstructionService {
     }
 
     public void process(TrackingFrame trackingFrame) {
-        Optional<Parameters> commandParameters = this.buildParameters(trackingFrame);
+        Optional<CommandParameters> commandParameters = this.buildParameters(trackingFrame);
         if (commandParameters.isPresent()) {
-            log.debug("Processing TrackingFrame. Parameters = {}", commandParameters.get());
+            log.debug("Processing TrackingFrame. CommandParameters = {}", commandParameters.get());
             this.commandExecutor.execute(commandParameters.get());
         }
     }
 
-    private Optional<Parameters> buildParameters(TrackingFrame trackingFrame) {
-        // find servo number
-
+    private Optional<CommandParameters> buildParameters(TrackingFrame trackingFrame) {
         try {
             Optional<Hand> leftHand = trackingFrame.getHand(HandType.LEFT);
             Optional<Hand> rightHand = trackingFrame.getHand(HandType.RIGHT);
 
             if (leftHand.isPresent() && rightHand.isPresent()) {
                 int servoId = this.findServoId(leftHand.get());
-                double delta = this.findDelta(rightHand.get());
-                return Optional.of(new Parameters(servoId, delta));
+                int delta = this.findDelta(rightHand.get());
+                return Optional.of(new CommandParameters(servoId, delta));
             }
-
 
         } catch (RuntimeException re) {
             log.debug("RuntimeException: {}", re.getMessage());
@@ -64,7 +62,7 @@ public class InstructionService {
         return servoId;
     }
 
-    private double findDelta(Hand hand) {
+    private int findDelta(Hand hand) {
         Optional<Finger> index = hand.getFinger(FingerType.INDEX);
         if (index.isPresent() && index.get().isExtended()) {
             return DELTA;

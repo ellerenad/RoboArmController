@@ -1,68 +1,55 @@
 package roboarmcontroller.domain.services.command;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.function.Consumer;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.Socket;
+import java.nio.ByteBuffer;
 
-// Code partially taken from https://stackoverflow.com/a/45376510
-// This implementation should be in communication, but as the POC showed several performance problems, this approach is abandoned.
 public class CommandExecutor {
+    private final static int SERVER_PORT = 52333;
+    private final static String SERVER_HOST = "localhost";
 
     private final Logger log = LoggerFactory.getLogger(CommandExecutor.class);
+    private OutputStream output;
+    private int[] intData = new int[2];
+    private byte[] bytes = new byte[intData.length * 4];
 
-    // private static boolean isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
-
-    private static final String DIR_PATH = "/home/kike/Documents/development/RoboArmController/src/RoboArmSimulation/plugins/build";
-
-    // remote_ctrl_robo_arm <ServoNumber:1,2,3> <delta:float>
-    private final String commandPattern = "/home/kike/Documents/development/RoboArmController/src/RoboArmSimulation/plugins/build/remote_ctrl_robo_arm %d %.2f";
-
-
-    public void execute(Parameters parameters) {
+    public CommandExecutor() {
+        Socket socket;
         try {
-            String command = String.format(commandPattern, parameters.getServoId(), parameters.getDelta());
-            log.info("Executing command, command {}", command);
-
-
-            Runtime r = Runtime.getRuntime();
-            Process p = r.exec(command);
-
-            p.waitFor();
-            BufferedReader b = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            String line = "";
-
-            while ((line = b.readLine()) != null) {
-                System.out.println(line);
-            }
-
-            b.close();
-
-            // assert exitCode == 0;
-        } catch (Exception e) {
-            log.info("Exception:{}", e.getMessage());
+            socket = new Socket(SERVER_HOST, SERVER_PORT);
+            output = socket.getOutputStream();
+        } catch (IOException e) {
+            log.error("Exception opening the socket", e);
+            throw new RuntimeException("Exception opening the socket");
         }
     }
 
-
-    private static class StreamGobbler implements Runnable {
-        private InputStream inputStream;
-        private Consumer<String> consumer;
-
-        public StreamGobbler(InputStream inputStream, Consumer<String> consumer) {
-            this.inputStream = inputStream;
-            this.consumer = consumer;
-        }
-
-        @Override
-        public void run() {
-            new BufferedReader(new InputStreamReader(inputStream)).lines()
-                    .forEach(consumer);
+    public void execute(CommandParameters commandParameters) {
+        intData[0] = commandParameters.getServoId();
+        intData[1] = commandParameters.getDelta();
+        byte[] data = convertIntArrayToByteArray(intData);
+        try {
+            output.write(data);
+        } catch (IOException e) {
+            log.error("Problem on writing to the socket");
         }
     }
 
+    private byte[] convertIntArrayToByteArray(int[] data) {
+        if (data == null) return null;
+        for (int i = 0; i < data.length; i++) {
+            System.arraycopy(intToBytes(data[i]), 0, bytes, i * 4, 4);
+        }
+        return bytes;
+    }
+
+    private byte[] intToBytes(final int i) {
+        ByteBuffer bb = ByteBuffer.allocate(4);
+        bb.putInt(i);
+        return bb.array();
+    }
 }

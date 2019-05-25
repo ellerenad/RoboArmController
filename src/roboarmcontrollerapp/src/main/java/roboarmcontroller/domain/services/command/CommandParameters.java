@@ -1,10 +1,11 @@
 package roboarmcontroller.domain.services.command;
 
-public class Parameters {
+@SuppressWarnings("WeakerAccess")
+public class CommandParameters {
     private int servoId;
-    private double delta;
+    private int delta;
 
-    public Parameters(int servoId, double delta) {
+    public CommandParameters(int servoId, int delta) {
         this.servoId = servoId;
         this.delta = delta;
     }
@@ -17,17 +18,17 @@ public class Parameters {
         this.servoId = servoId;
     }
 
-    public double getDelta() {
+    public int getDelta() {
         return delta;
     }
 
-    public void setDelta(double delta) {
+    public void setDelta(int delta) {
         this.delta = delta;
     }
 
     @Override
     public String toString() {
-        return "Parameters{" +
+        return "CommandParameters{" +
                 "servoId=" + servoId +
                 ", delta=" + delta +
                 '}';

@@ -9,6 +9,7 @@ import roboarmcontroller.domain.services.InstructionService;
 
 import java.math.BigInteger;
 
+@SuppressWarnings("WeakerAccess")
 public class DataPublisher {
 
     private final Logger log = LoggerFactory.getLogger(DataPublisher.class);
@@ -32,25 +33,22 @@ public class DataPublisher {
         try {
             JsonTrackingFrame jsonTrackingFrame = jsonTrackingFrameParser.parse(json);
 
-            if (this.isAValidMessage(jsonTrackingFrame)) {
+            if (this.isValidMessage(jsonTrackingFrame)) {
                 TrackingFrame trackingFrame = jsonToDomainMapper.map(jsonTrackingFrame);
                 instructionService.process(trackingFrame);
             }
         } catch (Exception ex) {
-            log.info("Exception: {}", ex.getMessage());
-            ex.printStackTrace();
+            log.info("Exception on data publish.", ex);
         }
 
     }
 
-    public boolean isAValidMessage(JsonTrackingFrame jsonTrackingFrame) {
-        boolean isValid = jsonTrackingFrame != null
+    public boolean isValidMessage(JsonTrackingFrame jsonTrackingFrame) {
+        return jsonTrackingFrame != null
                 && jsonTrackingFrame.getTimestamp() != null
                 && jsonTrackingFrame.getTimestamp().compareTo(ZERO_BIG_INTEGER) > 0
                 && jsonTrackingFrame.getJsonHands() != null
                 && jsonTrackingFrame.getJsonHands().size() > 0;
-
-        return isValid;
     }
 
 }
