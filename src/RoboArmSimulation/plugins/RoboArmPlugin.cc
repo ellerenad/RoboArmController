@@ -1,8 +1,11 @@
+#define DELTA_DIVISOR 1000.d
 
 #include <gazebo/gazebo.hh>
 #include <gazebo/physics/physics.hh>
 #include <gazebo/transport/transport.hh>
 #include <gazebo/msgs/msgs.hh>
+
+#include "Server.cpp"
 
 namespace gazebo
 {
@@ -30,20 +33,20 @@ namespace gazebo
       this->model = _model;
 
       // Get the joints. 
-		this->joint1 = _model->GetJoint("my_robo_arm::roboarm1::shape1_revolute");	
-		this->joint2 = _model->GetJoint("my_robo_arm::roboarm1::shape2_revolute");	
-		this->joint3 = _model->GetJoint("my_robo_arm::roboarm1::shape3_revolute");		
+	  this->joint1 = _model->GetJoint("my_robo_arm::roboarm1::shape1_revolute");
+	  this->joint2 = _model->GetJoint("my_robo_arm::roboarm1::shape2_revolute");
+	  this->joint3 = _model->GetJoint("my_robo_arm::roboarm1::shape3_revolute");
 
-      	// Setup the P-controllers, with a gain of 0.1.
-      	this->pid1 = common::PID(0, 0, 0.1);
-		this->pid2 = common::PID(0, 0, 0.1);
-		this->pid3 = common::PID(0, 0, 0.1);
+      // Setup the P-controllers, with a gain of 0.1.
+      this->pid1 = common::PID(0, 0, 0.1);
+	  this->pid2 = common::PID(0, 0, 0.1);
+	  this->pid3 = common::PID(0, 0, 0.1);
 
       // Apply the P-controller to the joints.
       // this->model->GetJointController()->SetVelocityPID(this->joint->GetScopedName(), this->pid);
-		this->model->GetJointController()->SetPositionPID(this->joint1->GetScopedName(), this->pid1);
-		this->model->GetJointController()->SetPositionPID(this->joint2->GetScopedName(), this->pid2);
-		this->model->GetJointController()->SetPositionPID(this->joint3->GetScopedName(), this->pid3);
+	  this->model->GetJointController()->SetPositionPID(this->joint1->GetScopedName(), this->pid1);
+	  this->model->GetJointController()->SetPositionPID(this->joint2->GetScopedName(), this->pid2);
+	  this->model->GetJointController()->SetPositionPID(this->joint3->GetScopedName(), this->pid3);
 
       this->InitJointsPosition();
 
@@ -55,30 +58,60 @@ namespace gazebo
       std::string topicName = "~/remote_ctrl_robo_arm/pos_cmd";
 
       // Subscribe to the topic, and register a callback
-       this->sub = this->node->Subscribe(topicName, &RoboArmPlugin::OnMsg, this);
+      // this->sub = this->node->Subscribe(topicName, &RoboArmPlugin::OnMsg, this);
+
+      // Create the server to listen for commands
+      server = roboarm::Server();
+
+      this->sub = this->node->Subscribe(topicName, &RoboArmPlugin::OnMsg, this);
+
+      // Listen to the update event. This event is broadcast every simulation iteration.
+      this->updateConnection = event::Events::ConnectWorldUpdateBegin(boost::bind(&RoboArmPlugin::OnUpdate, this, _1));
+    }
+
+    public: void OnUpdate(const common::UpdateInfo & /*_info*/)
+    {
+        int command;
+        int delta;
+        int receivedData;
+        if(listening == 0){
+            server.init();
+            server.acceptNewConn();
+            listening = 1;
+            std::cout << "listening" <<"\n";
+             std::cout.flush();
+        }
+
+        receivedData = server.receiveData(&command, &delta);
+        if(receivedData > 0){
+            std::cout << "Received Data " << command << " " << delta <<"\n";
+            this->DeltaPosition(command, delta);
+        }
     }
 
 
     /// \brief Set the new position of the joint
     /// \param[in] jointNumber id of the joint to change
     /// \param[in] _deltaPos Change of the position
-    public: void DeltaPosition(const int jointNumber, const double deltaPos)
+    public: void DeltaPosition(const int jointNumber, const int deltaPos)
     {
 		physics::JointPtr joint;
-		
+		// As of now, we can just read int from the network
+		// TODO: Fix when the server can read this as a double
+		double deltaPosProcessed = (double)deltaPos / DELTA_DIVISOR;
 		switch(jointNumber)
 		{
 			case 1:
-			        this->positionJoint1 += deltaPos;
+			        this->positionJoint1 += deltaPosProcessed;
 					this->model->GetJointController()->SetJointPosition(this->joint1, this->positionJoint1);
 
 					break;
 			case 2:
-					this->positionJoint2 += deltaPos;
+					this->positionJoint2 += deltaPosProcessed;
 					this->model->GetJointController()->SetJointPosition(this->joint2, this->positionJoint2);
 					break;
 			case 3:
-					this->positionJoint3 += deltaPos;
+					this->positionJoint3 += deltaPosProcessed;
 					this->model->GetJointController()->SetJointPosition(this->joint3, this->positionJoint3);
 					break;
 		}
@@ -136,6 +169,13 @@ namespace gazebo
 	private: double positionJoint1 = 0;
 	private: double positionJoint2 = 0;
 	private: double positionJoint3 = 0;
+
+	private: roboarm::Server server;
+    private: int listening = 0;
+
+
+    // Pointer to the update event connection
+    private: event::ConnectionPtr updateConnection;
 
   };
 
