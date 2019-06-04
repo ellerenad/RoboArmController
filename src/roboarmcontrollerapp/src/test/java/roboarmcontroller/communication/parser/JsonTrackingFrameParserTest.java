@@ -42,6 +42,7 @@ public class JsonTrackingFrameParserTest {
         JsonPointable jsonPointable = jsonTrackingFrame.getJsonPointables().get(0);
         assertEquals(0, jsonPointable.getType());
         assertFalse(jsonPointable.isExtended());
+        assertArrayEquals(jsonPointable.getStabilizedTipPosition(), new float[]{75.3986f, 254.982f, -13.5298f});
 
         // Index
         jsonPointable = jsonTrackingFrame.getJsonPointables().get(1);

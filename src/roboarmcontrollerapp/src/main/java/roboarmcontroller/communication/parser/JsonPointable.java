@@ -4,6 +4,7 @@ public class JsonPointable {
     private int id;
     private int handId;
     private boolean extended;
+    private float[] stabilizedTipPosition;
     private int type;
 
     public int getId() {
@@ -28,6 +29,14 @@ public class JsonPointable {
 
     public void setExtended(boolean extended) {
         this.extended = extended;
+    }
+
+    public float[] getStabilizedTipPosition() {
+        return stabilizedTipPosition;
+    }
+
+    public void setStabilizedTipPosition(float[] stabilizedTipPosition) {
+        this.stabilizedTipPosition = stabilizedTipPosition;
     }
 
     public int getType() {

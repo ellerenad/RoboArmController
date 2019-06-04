@@ -53,6 +53,7 @@ class JsonToDomainMapperTest {
         assertEquals(hand.getId(), finger0.getHandId());
         assertFalse(finger0.isExtended());
         assertEquals(FingerType.THUMB, finger0.getType());
+        assertNotNull(finger0.getPosition());
 
         Finger finger2 = fingerList.get(2);
         assertNotNull(finger2);
@@ -60,6 +61,7 @@ class JsonToDomainMapperTest {
         assertEquals(hand.getId(), finger2.getHandId());
         assertTrue(finger2.isExtended());
         assertEquals(FingerType.MIDDLE, finger2.getType());
+        assertNotNull(finger2.getPosition());
 
     }
 

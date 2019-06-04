@@ -65,6 +65,9 @@ public class JsonToDomainMapper {
         int fingerTypeIndex = jsonPointable.getType();
         finger.setType(FINGER_TYPES[fingerTypeIndex]);
 
+        FingerPosition fingerPosition = new FingerPosition(jsonPointable.getStabilizedTipPosition());
+        finger.setPosition(fingerPosition);
+
         return finger;
     }
 
