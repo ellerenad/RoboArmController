@@ -17,18 +17,11 @@ public class CommandExecutor {
     private int[] intData = new int[2];
     private byte[] bytes = new byte[intData.length * 4];
 
-    public CommandExecutor() {
-        Socket socket;
-        try {
-            socket = new Socket(SERVER_HOST, SERVER_PORT);
-            output = socket.getOutputStream();
-        } catch (IOException e) {
-            log.error("Exception opening the socket", e);
-            throw new RuntimeException("Exception opening the socket");
-        }
-    }
-
     public void execute(CommandParameters commandParameters) {
+        if (output == null) {
+            this.initSocket();
+        }
+
         intData[0] = commandParameters.getServoId();
         intData[1] = commandParameters.getDelta();
         byte[] data = convertIntArrayToByteArray(intData);
@@ -36,6 +29,17 @@ public class CommandExecutor {
             output.write(data);
         } catch (IOException e) {
             log.error("Problem on writing to the socket");
+        }
+    }
+
+    private void initSocket() {
+        Socket socket;
+        try {
+            socket = new Socket(SERVER_HOST, SERVER_PORT);
+            output = socket.getOutputStream();
+        } catch (IOException e) {
+            log.error("Exception opening the socket", e);
+            throw new RuntimeException("Exception opening the socket");
         }
     }
 

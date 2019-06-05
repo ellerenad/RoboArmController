@@ -5,7 +5,8 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.nio.ByteBuffer;
 
-// Class to test the communication with the C server
+// Class to test the communication with the C server.
+// TODO Fix:  This does not belong here
 public class TestSocketConnection {
 
 

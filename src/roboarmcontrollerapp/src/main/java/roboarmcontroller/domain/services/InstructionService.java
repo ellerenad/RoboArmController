@@ -15,20 +15,29 @@ public class InstructionService {
     private final int DELTA = 10;
     private final int SERVOS_COUNT = 3;
     private CommandExecutor commandExecutor;
+    private TrainingService trainingService;
+    // TODO: Get from parameters
+    private boolean trainingMode = true;
 
     public InstructionService() {
-        this(new CommandExecutor());
+        this(new CommandExecutor(), new TrainingService());
     }
 
-    public InstructionService(CommandExecutor commandExecutor) {
+    public InstructionService(CommandExecutor commandExecutor, TrainingService trainingService) {
         this.commandExecutor = commandExecutor;
+        this.trainingService = trainingService;
     }
 
     public void process(TrackingFrame trackingFrame) {
-        Optional<CommandParameters> commandParameters = this.buildParameters(trackingFrame);
-        if (commandParameters.isPresent()) {
-            log.debug("Processing TrackingFrame. CommandParameters = {}", commandParameters.get());
-            this.commandExecutor.execute(commandParameters.get());
+
+        if (this.trainingMode) {
+            this.trainingService.process(trackingFrame);
+        } else {
+            Optional<CommandParameters> commandParameters = this.buildParameters(trackingFrame);
+            if (commandParameters.isPresent()) {
+                log.debug("Processing TrackingFrame. CommandParameters = {}", commandParameters.get());
+                this.commandExecutor.execute(commandParameters.get());
+            }
         }
     }
 

@@ -19,7 +19,6 @@ class JsonToDomainMapperTest {
 
     JsonToDomainMapper jsonToDomainMapper;
 
-    // TODO: Delete and use previously constructed Json*** Objects instead of directly parsing the JSON
     JsonTrackingFrameParser jsonTrackingFrameParser;
 
     @BeforeEach
