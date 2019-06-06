@@ -20,7 +20,7 @@ public class TrainingSetWriter {
     String fileName;
 
     public void init() {
-        fileName = "trainingSets/trainingSet_" + System.currentTimeMillis() + ".txt";
+        fileName = "trainingAssets/sets/trainingSet_" + System.currentTimeMillis() + ".txt";
         try {
             File file = new File(fileName);
             file.createNewFile();
@@ -34,7 +34,7 @@ public class TrainingSetWriter {
 
     public void writeLine(Hand hand, InstructionLabel instructionLabel) {
         String handLine = this.getLine(hand);
-        printWriter.printf("%s|%s\n", handLine, instructionLabel);
+        printWriter.printf("%s|%s\n", handLine, String.valueOf(instructionLabel.ordinal()));
     }
 
     public void terminate() {
@@ -47,7 +47,7 @@ public class TrainingSetWriter {
 
     String getLine(Hand hand) {
         List<String> parts = new ArrayList<>();
-        parts.add(hand.getType().toString());
+        parts.add(String.valueOf(hand.getType().ordinal()));
         hand.getFingers().stream().forEach(finger -> {
             parts.add(String.valueOf(finger.getPosition().getX()));
             parts.add(String.valueOf(finger.getPosition().getY()));
