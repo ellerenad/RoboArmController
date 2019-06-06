@@ -17,9 +17,10 @@ public class TrainingSetWriter {
 
     FileWriter fileWriter;
     PrintWriter printWriter;
+    String fileName;
 
     public void init() {
-        String fileName = "trainingSets/trainingSet_" + System.currentTimeMillis() + ".txt";
+        fileName = "trainingSets/trainingSet_" + System.currentTimeMillis() + ".txt";
         try {
             File file = new File(fileName);
             file.createNewFile();
@@ -38,6 +39,10 @@ public class TrainingSetWriter {
 
     public void terminate() {
         printWriter.close();
+    }
+
+    public String getFileName() {
+        return fileName;
     }
 
     String getLine(Hand hand) {

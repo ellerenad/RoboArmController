@@ -61,6 +61,7 @@ class TrainingServiceTest {
         verify(trainingSetWriterMock, times(1)).writeLine(Matchers.eq(rightHand), Matchers.eq(InstructionLabel.DELTA_NEGATIVE));
 
         trainingService.process(trackingFrame);
+        verify(trainingSetWriterMock, times(1)).getFileName();
         verify(trainingSetWriterMock, times(1)).terminate();
         verify(exitServiceMock, times(1)).terminateProgram(0);
     }
