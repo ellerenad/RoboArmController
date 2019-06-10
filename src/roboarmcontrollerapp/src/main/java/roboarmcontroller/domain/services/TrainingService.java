@@ -93,7 +93,7 @@ public class TrainingService {
                 } else {
                     cycle = 0;
                     step = 5;
-                    log.info("Training set written. File:{}. You can now train the model. Finalizing program.", trainingSetWriter.getFileName());
+                    log.info("Training set written. File:{}. File stamp:{} . You can now train the model. Finalizing program.", trainingSetWriter.getFileName(), trainingSetWriter.getFileStamp());
                     trainingSetWriter.terminate();
                     exitService.terminateProgram(0);
                 }

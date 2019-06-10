@@ -2213,39 +2213,6 @@ meta_graphs {
       }
     }
     node {
-      name: "ParseExample/Const_16"
-      op: "Const"
-      attr {
-        key: "_output_shapes"
-        value {
-          list {
-            shape {
-              dim {
-              }
-            }
-          }
-        }
-      }
-      attr {
-        key: "dtype"
-        value {
-          type: DT_FLOAT
-        }
-      }
-      attr {
-        key: "value"
-        value {
-          tensor {
-            dtype: DT_FLOAT
-            tensor_shape {
-              dim {
-              }
-            }
-          }
-        }
-      }
-    }
-    node {
       name: "ParseExample/ParseExample/names"
       op: "Const"
       attr {
@@ -2759,36 +2726,6 @@ meta_graphs {
       }
     }
     node {
-      name: "ParseExample/ParseExample/dense_keys_16"
-      op: "Const"
-      attr {
-        key: "_output_shapes"
-        value {
-          list {
-            shape {
-            }
-          }
-        }
-      }
-      attr {
-        key: "dtype"
-        value {
-          type: DT_STRING
-        }
-      }
-      attr {
-        key: "value"
-        value {
-          tensor {
-            dtype: DT_STRING
-            tensor_shape {
-            }
-            string_val: "INSTRUCTION_LABEL"
-          }
-        }
-      }
-    }
-    node {
       name: "ParseExample/ParseExample"
       op: "ParseExample"
       input: "input_tensors"
@@ -2809,7 +2746,6 @@ meta_graphs {
       input: "ParseExample/ParseExample/dense_keys_13"
       input: "ParseExample/ParseExample/dense_keys_14"
       input: "ParseExample/ParseExample/dense_keys_15"
-      input: "ParseExample/ParseExample/dense_keys_16"
       input: "ParseExample/Const"
       input: "ParseExample/Const_1"
       input: "ParseExample/Const_2"
@@ -2826,11 +2762,10 @@ meta_graphs {
       input: "ParseExample/Const_13"
       input: "ParseExample/Const_14"
       input: "ParseExample/Const_15"
-      input: "ParseExample/Const_16"
       attr {
         key: "Ndense"
         value {
-          i: 17
+          i: 16
         }
       }
       attr {
@@ -2859,7 +2794,6 @@ meta_graphs {
             type: DT_FLOAT
             type: DT_FLOAT
             type: DT_FLOAT
-            type: DT_FLOAT
           }
         }
       }
@@ -2867,14 +2801,6 @@ meta_graphs {
         key: "_output_shapes"
         value {
           list {
-            shape {
-              dim {
-                size: -1
-              }
-              dim {
-                size: 25
-              }
-            }
             shape {
               dim {
                 size: -1
@@ -3010,11 +2936,6 @@ meta_graphs {
         key: "dense_shapes"
         value {
           list {
-            shape {
-              dim {
-                size: 25
-              }
-            }
             shape {
               dim {
                 size: 25
@@ -7827,301 +7748,6 @@ meta_graphs {
       }
     }
     node {
-      name: "dnn/input_from_feature_columns/input_layer/INSTRUCTION_LABEL/Shape"
-      op: "Shape"
-      input: "ParseExample/ParseExample:16"
-      attr {
-        key: "T"
-        value {
-          type: DT_FLOAT
-        }
-      }
-      attr {
-        key: "_output_shapes"
-        value {
-          list {
-            shape {
-              dim {
-                size: 2
-              }
-            }
-          }
-        }
-      }
-      attr {
-        key: "out_type"
-        value {
-          type: DT_INT32
-        }
-      }
-    }
-    node {
-      name: "dnn/input_from_feature_columns/input_layer/INSTRUCTION_LABEL/strided_slice/stack"
-      op: "Const"
-      attr {
-        key: "_output_shapes"
-        value {
-          list {
-            shape {
-              dim {
-                size: 1
-              }
-            }
-          }
-        }
-      }
-      attr {
-        key: "dtype"
-        value {
-          type: DT_INT32
-        }
-      }
-      attr {
-        key: "value"
-        value {
-          tensor {
-            dtype: DT_INT32
-            tensor_shape {
-              dim {
-                size: 1
-              }
-            }
-            int_val: 0
-          }
-        }
-      }
-    }
-    node {
-      name: "dnn/input_from_feature_columns/input_layer/INSTRUCTION_LABEL/strided_slice/stack_1"
-      op: "Const"
-      attr {
-        key: "_output_shapes"
-        value {
-          list {
-            shape {
-              dim {
-                size: 1
-              }
-            }
-          }
-        }
-      }
-      attr {
-        key: "dtype"
-        value {
-          type: DT_INT32
-        }
-      }
-      attr {
-        key: "value"
-        value {
-          tensor {
-            dtype: DT_INT32
-            tensor_shape {
-              dim {
-                size: 1
-              }
-            }
-            int_val: 1
-          }
-        }
-      }
-    }
-    node {
-      name: "dnn/input_from_feature_columns/input_layer/INSTRUCTION_LABEL/strided_slice/stack_2"
-      op: "Const"
-      attr {
-        key: "_output_shapes"
-        value {
-          list {
-            shape {
-              dim {
-                size: 1
-              }
-            }
-          }
-        }
-      }
-      attr {
-        key: "dtype"
-        value {
-          type: DT_INT32
-        }
-      }
-      attr {
-        key: "value"
-        value {
-          tensor {
-            dtype: DT_INT32
-            tensor_shape {
-              dim {
-                size: 1
-              }
-            }
-            int_val: 1
-          }
-        }
-      }
-    }
-    node {
-      name: "dnn/input_from_feature_columns/input_layer/INSTRUCTION_LABEL/strided_slice"
-      op: "StridedSlice"
-      input: "dnn/input_from_feature_columns/input_layer/INSTRUCTION_LABEL/Shape"
-      input: "dnn/input_from_feature_columns/input_layer/INSTRUCTION_LABEL/strided_slice/stack"
-      input: "dnn/input_from_feature_columns/input_layer/INSTRUCTION_LABEL/strided_slice/stack_1"
-      input: "dnn/input_from_feature_columns/input_layer/INSTRUCTION_LABEL/strided_slice/stack_2"
-      attr {
-        key: "Index"
-        value {
-          type: DT_INT32
-        }
-      }
-      attr {
-        key: "T"
-        value {
-          type: DT_INT32
-        }
-      }
-      attr {
-        key: "_output_shapes"
-        value {
-          list {
-            shape {
-            }
-          }
-        }
-      }
-      attr {
-        key: "begin_mask"
-        value {
-          i: 0
-        }
-      }
-      attr {
-        key: "ellipsis_mask"
-        value {
-          i: 0
-        }
-      }
-      attr {
-        key: "end_mask"
-        value {
-          i: 0
-        }
-      }
-      attr {
-        key: "new_axis_mask"
-        value {
-          i: 0
-        }
-      }
-      attr {
-        key: "shrink_axis_mask"
-        value {
-          i: 1
-        }
-      }
-    }
-    node {
-      name: "dnn/input_from_feature_columns/input_layer/INSTRUCTION_LABEL/Reshape/shape/1"
-      op: "Const"
-      attr {
-        key: "_output_shapes"
-        value {
-          list {
-            shape {
-            }
-          }
-        }
-      }
-      attr {
-        key: "dtype"
-        value {
-          type: DT_INT32
-        }
-      }
-      attr {
-        key: "value"
-        value {
-          tensor {
-            dtype: DT_INT32
-            tensor_shape {
-            }
-            int_val: 1
-          }
-        }
-      }
-    }
-    node {
-      name: "dnn/input_from_feature_columns/input_layer/INSTRUCTION_LABEL/Reshape/shape"
-      op: "Pack"
-      input: "dnn/input_from_feature_columns/input_layer/INSTRUCTION_LABEL/strided_slice"
-      input: "dnn/input_from_feature_columns/input_layer/INSTRUCTION_LABEL/Reshape/shape/1"
-      attr {
-        key: "N"
-        value {
-          i: 2
-        }
-      }
-      attr {
-        key: "T"
-        value {
-          type: DT_INT32
-        }
-      }
-      attr {
-        key: "_output_shapes"
-        value {
-          list {
-            shape {
-              dim {
-                size: 2
-              }
-            }
-          }
-        }
-      }
-      attr {
-        key: "axis"
-        value {
-          i: 0
-        }
-      }
-    }
-    node {
-      name: "dnn/input_from_feature_columns/input_layer/INSTRUCTION_LABEL/Reshape"
-      op: "Reshape"
-      input: "ParseExample/ParseExample:16"
-      input: "dnn/input_from_feature_columns/input_layer/INSTRUCTION_LABEL/Reshape/shape"
-      attr {
-        key: "T"
-        value {
-          type: DT_FLOAT
-        }
-      }
-      attr {
-        key: "Tshape"
-        value {
-          type: DT_INT32
-        }
-      }
-      attr {
-        key: "_output_shapes"
-        value {
-          list {
-            shape {
-              dim {
-                size: -1
-              }
-              dim {
-                size: 1
-              }
-            }
-          }
-        }
-      }
-    }
-    node {
       name: "dnn/input_from_feature_columns/input_layer/concat/axis"
       op: "Const"
       attr {
@@ -8170,12 +7796,11 @@ meta_graphs {
       input: "dnn/input_from_feature_columns/input_layer/FINGER5_Y/Reshape"
       input: "dnn/input_from_feature_columns/input_layer/FINGER5_Z/Reshape"
       input: "dnn/input_from_feature_columns/input_layer/HAND_TYPE/Reshape"
-      input: "dnn/input_from_feature_columns/input_layer/INSTRUCTION_LABEL/Reshape"
       input: "dnn/input_from_feature_columns/input_layer/concat/axis"
       attr {
         key: "N"
         value {
-          i: 17
+          i: 16
         }
       }
       attr {
@@ -8199,7 +7824,7 @@ meta_graphs {
                 size: -1
               }
               dim {
-                size: 17
+                size: 16
               }
             }
           }
@@ -8245,7 +7870,7 @@ meta_graphs {
                 size: 2
               }
             }
-            tensor_content: "\021\000\000\000\005\000\000\000"
+            tensor_content: "\020\000\000\000\005\000\000\000"
           }
         }
       }
@@ -8283,7 +7908,7 @@ meta_graphs {
             dtype: DT_FLOAT
             tensor_shape {
             }
-            float_val: -0.5222329497337341
+            float_val: -0.5345224738121033
           }
         }
       }
@@ -8321,7 +7946,7 @@ meta_graphs {
             dtype: DT_FLOAT
             tensor_shape {
             }
-            float_val: 0.5222329497337341
+            float_val: 0.5345224738121033
           }
         }
       }
@@ -8350,7 +7975,7 @@ meta_graphs {
           list {
             shape {
               dim {
-                size: 17
+                size: 16
               }
               dim {
                 size: 5
@@ -8432,7 +8057,7 @@ meta_graphs {
           list {
             shape {
               dim {
-                size: 17
+                size: 16
               }
               dim {
                 size: 5
@@ -8467,7 +8092,7 @@ meta_graphs {
           list {
             shape {
               dim {
-                size: 17
+                size: 16
               }
               dim {
                 size: 5
@@ -8514,7 +8139,7 @@ meta_graphs {
         value {
           shape {
             dim {
-              size: 17
+              size: 16
             }
             dim {
               size: 5
@@ -8581,7 +8206,7 @@ meta_graphs {
           list {
             shape {
               dim {
-                size: 17
+                size: 16
               }
               dim {
                 size: 5
@@ -8765,7 +8390,7 @@ meta_graphs {
           list {
             shape {
               dim {
-                size: 17
+                size: 16
               }
               dim {
                 size: 5
@@ -8797,7 +8422,7 @@ meta_graphs {
           list {
             shape {
               dim {
-                size: 17
+                size: 16
               }
               dim {
                 size: 5
@@ -14003,7 +13628,7 @@ meta_graphs {
           list {
             shape {
               dim {
-                size: 17
+                size: 16
               }
               dim {
                 size: 5
@@ -14035,7 +13660,7 @@ meta_graphs {
           list {
             shape {
               dim {
-                size: 17
+                size: 16
               }
               dim {
                 size: 5
@@ -14062,7 +13687,7 @@ meta_graphs {
           list {
             shape {
               dim {
-                size: 17
+                size: 16
               }
               dim {
                 size: 5
@@ -14395,7 +14020,7 @@ meta_graphs {
             dtype: DT_STRING
             tensor_shape {
             }
-            string_val: "_temp_658cc6cc4cf145949f845f8099508b00/part"
+            string_val: "_temp_a5471a8f9efc42c394c29b57f33ecaee/part"
           }
         }
       }
@@ -14757,7 +14382,7 @@ meta_graphs {
           list {
             shape {
               dim {
-                size: 17
+                size: 16
               }
               dim {
                 size: 5
@@ -14790,7 +14415,7 @@ meta_graphs {
           list {
             shape {
               dim {
-                size: 17
+                size: 16
               }
               dim {
                 size: 5
@@ -14817,7 +14442,7 @@ meta_graphs {
           list {
             shape {
               dim {
-                size: 17
+                size: 16
               }
               dim {
                 size: 5
@@ -15208,7 +14833,7 @@ meta_graphs {
               }
             }
             string_val: "5 0,5"
-            string_val: "17 5 0,17:0,5"
+            string_val: "16 5 0,16:0,5"
             string_val: "5 0,5"
             string_val: "5 5 0,5:0,5"
             string_val: "5 0,5"
@@ -15571,7 +15196,7 @@ meta_graphs {
               }
             }
             string_val: "5 0,5"
-            string_val: "17 5 0,17:0,5"
+            string_val: "16 5 0,16:0,5"
             string_val: "5 0,5"
             string_val: "5 5 0,5:0,5"
             string_val: "5 0,5"
@@ -15598,7 +15223,7 @@ meta_graphs {
             }
             shape {
               dim {
-                size: 17
+                size: 16
               }
               dim {
                 size: 5
@@ -15701,7 +15326,7 @@ meta_graphs {
           list {
             shape {
               dim {
-                size: 17
+                size: 16
               }
               dim {
                 size: 5
@@ -15923,12 +15548,12 @@ meta_graphs {
     key: "cond_context"
     value {
       bytes_list {
-        value: "\n dnn/zero_fraction/cond/cond_text\022 dnn/zero_fraction/cond/pred_id:0\032!dnn/zero_fraction/cond/switch_t:0 \001*\300\004\n\030dnn/hiddenlayer_0/Relu:0\n\035dnn/zero_fraction/cond/Cast:0\n+dnn/zero_fraction/cond/count_nonzero/Cast:0\n,dnn/zero_fraction/cond/count_nonzero/Const:0\n6dnn/zero_fraction/cond/count_nonzero/NotEqual/Switch:1\n/dnn/zero_fraction/cond/count_nonzero/NotEqual:0\n4dnn/zero_fraction/cond/count_nonzero/nonzero_count:0\n,dnn/zero_fraction/cond/count_nonzero/zeros:0\n dnn/zero_fraction/cond/pred_id:0\n!dnn/zero_fraction/cond/switch_t:0\022R\n\030dnn/hiddenlayer_0/Relu:0\0226dnn/zero_fraction/cond/count_nonzero/NotEqual/Switch:1\022D\n dnn/zero_fraction/cond/pred_id:0\022 dnn/zero_fraction/cond/pred_id:0"
+        value: "\n dnn/zero_fraction/cond/cond_text\022 dnn/zero_fraction/cond/pred_id:0\032!dnn/zero_fraction/cond/switch_t:0 \001*\300\004\n\030dnn/hiddenlayer_0/Relu:0\n\035dnn/zero_fraction/cond/Cast:0\n+dnn/zero_fraction/cond/count_nonzero/Cast:0\n,dnn/zero_fraction/cond/count_nonzero/Const:0\n6dnn/zero_fraction/cond/count_nonzero/NotEqual/Switch:1\n/dnn/zero_fraction/cond/count_nonzero/NotEqual:0\n4dnn/zero_fraction/cond/count_nonzero/nonzero_count:0\n,dnn/zero_fraction/cond/count_nonzero/zeros:0\n dnn/zero_fraction/cond/pred_id:0\n!dnn/zero_fraction/cond/switch_t:0\022D\n dnn/zero_fraction/cond/pred_id:0\022 dnn/zero_fraction/cond/pred_id:0\022R\n\030dnn/hiddenlayer_0/Relu:0\0226dnn/zero_fraction/cond/count_nonzero/NotEqual/Switch:1"
         value: "\n\"dnn/zero_fraction/cond/cond_text_1\022 dnn/zero_fraction/cond/pred_id:0\032!dnn/zero_fraction/cond/switch_f:0*\257\004\n\030dnn/hiddenlayer_0/Relu:0\n-dnn/zero_fraction/cond/count_nonzero_1/Cast:0\n.dnn/zero_fraction/cond/count_nonzero_1/Const:0\n8dnn/zero_fraction/cond/count_nonzero_1/NotEqual/Switch:0\n1dnn/zero_fraction/cond/count_nonzero_1/NotEqual:0\n6dnn/zero_fraction/cond/count_nonzero_1/nonzero_count:0\n.dnn/zero_fraction/cond/count_nonzero_1/zeros:0\n dnn/zero_fraction/cond/pred_id:0\n!dnn/zero_fraction/cond/switch_f:0\022D\n dnn/zero_fraction/cond/pred_id:0\022 dnn/zero_fraction/cond/pred_id:0\022T\n\030dnn/hiddenlayer_0/Relu:0\0228dnn/zero_fraction/cond/count_nonzero_1/NotEqual/Switch:0"
         value: "\n\"dnn/zero_fraction_1/cond/cond_text\022\"dnn/zero_fraction_1/cond/pred_id:0\032#dnn/zero_fraction_1/cond/switch_t:0 \001*\330\004\n\030dnn/hiddenlayer_1/Relu:0\n\037dnn/zero_fraction_1/cond/Cast:0\n-dnn/zero_fraction_1/cond/count_nonzero/Cast:0\n.dnn/zero_fraction_1/cond/count_nonzero/Const:0\n8dnn/zero_fraction_1/cond/count_nonzero/NotEqual/Switch:1\n1dnn/zero_fraction_1/cond/count_nonzero/NotEqual:0\n6dnn/zero_fraction_1/cond/count_nonzero/nonzero_count:0\n.dnn/zero_fraction_1/cond/count_nonzero/zeros:0\n\"dnn/zero_fraction_1/cond/pred_id:0\n#dnn/zero_fraction_1/cond/switch_t:0\022H\n\"dnn/zero_fraction_1/cond/pred_id:0\022\"dnn/zero_fraction_1/cond/pred_id:0\022T\n\030dnn/hiddenlayer_1/Relu:0\0228dnn/zero_fraction_1/cond/count_nonzero/NotEqual/Switch:1"
         value: "\n$dnn/zero_fraction_1/cond/cond_text_1\022\"dnn/zero_fraction_1/cond/pred_id:0\032#dnn/zero_fraction_1/cond/switch_f:0*\305\004\n\030dnn/hiddenlayer_1/Relu:0\n/dnn/zero_fraction_1/cond/count_nonzero_1/Cast:0\n0dnn/zero_fraction_1/cond/count_nonzero_1/Const:0\n:dnn/zero_fraction_1/cond/count_nonzero_1/NotEqual/Switch:0\n3dnn/zero_fraction_1/cond/count_nonzero_1/NotEqual:0\n8dnn/zero_fraction_1/cond/count_nonzero_1/nonzero_count:0\n0dnn/zero_fraction_1/cond/count_nonzero_1/zeros:0\n\"dnn/zero_fraction_1/cond/pred_id:0\n#dnn/zero_fraction_1/cond/switch_f:0\022H\n\"dnn/zero_fraction_1/cond/pred_id:0\022\"dnn/zero_fraction_1/cond/pred_id:0\022V\n\030dnn/hiddenlayer_1/Relu:0\022:dnn/zero_fraction_1/cond/count_nonzero_1/NotEqual/Switch:0"
         value: "\n\"dnn/zero_fraction_2/cond/cond_text\022\"dnn/zero_fraction_2/cond/pred_id:0\032#dnn/zero_fraction_2/cond/switch_t:0 \001*\320\004\n\024dnn/logits/BiasAdd:0\n\037dnn/zero_fraction_2/cond/Cast:0\n-dnn/zero_fraction_2/cond/count_nonzero/Cast:0\n.dnn/zero_fraction_2/cond/count_nonzero/Const:0\n8dnn/zero_fraction_2/cond/count_nonzero/NotEqual/Switch:1\n1dnn/zero_fraction_2/cond/count_nonzero/NotEqual:0\n6dnn/zero_fraction_2/cond/count_nonzero/nonzero_count:0\n.dnn/zero_fraction_2/cond/count_nonzero/zeros:0\n\"dnn/zero_fraction_2/cond/pred_id:0\n#dnn/zero_fraction_2/cond/switch_t:0\022H\n\"dnn/zero_fraction_2/cond/pred_id:0\022\"dnn/zero_fraction_2/cond/pred_id:0\022P\n\024dnn/logits/BiasAdd:0\0228dnn/zero_fraction_2/cond/count_nonzero/NotEqual/Switch:1"
-        value: "\n$dnn/zero_fraction_2/cond/cond_text_1\022\"dnn/zero_fraction_2/cond/pred_id:0\032#dnn/zero_fraction_2/cond/switch_f:0*\275\004\n\024dnn/logits/BiasAdd:0\n/dnn/zero_fraction_2/cond/count_nonzero_1/Cast:0\n0dnn/zero_fraction_2/cond/count_nonzero_1/Const:0\n:dnn/zero_fraction_2/cond/count_nonzero_1/NotEqual/Switch:0\n3dnn/zero_fraction_2/cond/count_nonzero_1/NotEqual:0\n8dnn/zero_fraction_2/cond/count_nonzero_1/nonzero_count:0\n0dnn/zero_fraction_2/cond/count_nonzero_1/zeros:0\n\"dnn/zero_fraction_2/cond/pred_id:0\n#dnn/zero_fraction_2/cond/switch_f:0\022H\n\"dnn/zero_fraction_2/cond/pred_id:0\022\"dnn/zero_fraction_2/cond/pred_id:0\022R\n\024dnn/logits/BiasAdd:0\022:dnn/zero_fraction_2/cond/count_nonzero_1/NotEqual/Switch:0"
+        value: "\n$dnn/zero_fraction_2/cond/cond_text_1\022\"dnn/zero_fraction_2/cond/pred_id:0\032#dnn/zero_fraction_2/cond/switch_f:0*\275\004\n\024dnn/logits/BiasAdd:0\n/dnn/zero_fraction_2/cond/count_nonzero_1/Cast:0\n0dnn/zero_fraction_2/cond/count_nonzero_1/Const:0\n:dnn/zero_fraction_2/cond/count_nonzero_1/NotEqual/Switch:0\n3dnn/zero_fraction_2/cond/count_nonzero_1/NotEqual:0\n8dnn/zero_fraction_2/cond/count_nonzero_1/nonzero_count:0\n0dnn/zero_fraction_2/cond/count_nonzero_1/zeros:0\n\"dnn/zero_fraction_2/cond/pred_id:0\n#dnn/zero_fraction_2/cond/switch_f:0\022R\n\024dnn/logits/BiasAdd:0\022:dnn/zero_fraction_2/cond/count_nonzero_1/NotEqual/Switch:0\022H\n\"dnn/zero_fraction_2/cond/pred_id:0\022\"dnn/zero_fraction_2/cond/pred_id:0"
       }
     }
   }
@@ -15965,7 +15590,7 @@ meta_graphs {
     key: "trainable_variables"
     value {
       bytes_list {
-        value: "\n!dnn/hiddenlayer_0/kernel/part_0:0\022&dnn/hiddenlayer_0/kernel/part_0/Assign\0325dnn/hiddenlayer_0/kernel/part_0/Read/ReadVariableOp:0\"&\n\030dnn/hiddenlayer_0/kernel\022\002\021\005\032\002\000\000\"\002\021\005(\0012<dnn/hiddenlayer_0/kernel/part_0/Initializer/random_uniform:08\001"
+        value: "\n!dnn/hiddenlayer_0/kernel/part_0:0\022&dnn/hiddenlayer_0/kernel/part_0/Assign\0325dnn/hiddenlayer_0/kernel/part_0/Read/ReadVariableOp:0\"&\n\030dnn/hiddenlayer_0/kernel\022\002\020\005\032\002\000\000\"\002\020\005(\0012<dnn/hiddenlayer_0/kernel/part_0/Initializer/random_uniform:08\001"
         value: "\n\037dnn/hiddenlayer_0/bias/part_0:0\022$dnn/hiddenlayer_0/bias/part_0/Assign\0323dnn/hiddenlayer_0/bias/part_0/Read/ReadVariableOp:0\"!\n\026dnn/hiddenlayer_0/bias\022\001\005\032\001\000\"\001\005(\00121dnn/hiddenlayer_0/bias/part_0/Initializer/zeros:08\001"
         value: "\n!dnn/hiddenlayer_1/kernel/part_0:0\022&dnn/hiddenlayer_1/kernel/part_0/Assign\0325dnn/hiddenlayer_1/kernel/part_0/Read/ReadVariableOp:0\"&\n\030dnn/hiddenlayer_1/kernel\022\002\005\005\032\002\000\000\"\002\005\005(\0012<dnn/hiddenlayer_1/kernel/part_0/Initializer/random_uniform:08\001"
         value: "\n\037dnn/hiddenlayer_1/bias/part_0:0\022$dnn/hiddenlayer_1/bias/part_0/Assign\0323dnn/hiddenlayer_1/bias/part_0/Read/ReadVariableOp:0\"!\n\026dnn/hiddenlayer_1/bias\022\001\005\032\001\000\"\001\005(\00121dnn/hiddenlayer_1/bias/part_0/Initializer/zeros:08\001"
@@ -15979,7 +15604,7 @@ meta_graphs {
     value {
       bytes_list {
         value: "\n\rglobal_step:0\022\022global_step/Assign\032\022global_step/read:02\037global_step/Initializer/zeros:0"
-        value: "\n!dnn/hiddenlayer_0/kernel/part_0:0\022&dnn/hiddenlayer_0/kernel/part_0/Assign\0325dnn/hiddenlayer_0/kernel/part_0/Read/ReadVariableOp:0\"&\n\030dnn/hiddenlayer_0/kernel\022\002\021\005\032\002\000\000\"\002\021\005(\0012<dnn/hiddenlayer_0/kernel/part_0/Initializer/random_uniform:08\001"
+        value: "\n!dnn/hiddenlayer_0/kernel/part_0:0\022&dnn/hiddenlayer_0/kernel/part_0/Assign\0325dnn/hiddenlayer_0/kernel/part_0/Read/ReadVariableOp:0\"&\n\030dnn/hiddenlayer_0/kernel\022\002\020\005\032\002\000\000\"\002\020\005(\0012<dnn/hiddenlayer_0/kernel/part_0/Initializer/random_uniform:08\001"
         value: "\n\037dnn/hiddenlayer_0/bias/part_0:0\022$dnn/hiddenlayer_0/bias/part_0/Assign\0323dnn/hiddenlayer_0/bias/part_0/Read/ReadVariableOp:0\"!\n\026dnn/hiddenlayer_0/bias\022\001\005\032\001\000\"\001\005(\00121dnn/hiddenlayer_0/bias/part_0/Initializer/zeros:08\001"
         value: "\n!dnn/hiddenlayer_1/kernel/part_0:0\022&dnn/hiddenlayer_1/kernel/part_0/Assign\0325dnn/hiddenlayer_1/kernel/part_0/Read/ReadVariableOp:0\"&\n\030dnn/hiddenlayer_1/kernel\022\002\005\005\032\002\000\000\"\002\005\005(\0012<dnn/hiddenlayer_1/kernel/part_0/Initializer/random_uniform:08\001"
         value: "\n\037dnn/hiddenlayer_1/bias/part_0:0\022$dnn/hiddenlayer_1/bias/part_0/Assign\0323dnn/hiddenlayer_1/bias/part_0/Read/ReadVariableOp:0\"!\n\026dnn/hiddenlayer_1/bias\022\001\005\032\001\000\"\001\005(\00121dnn/hiddenlayer_1/bias/part_0/Initializer/zeros:08\001"

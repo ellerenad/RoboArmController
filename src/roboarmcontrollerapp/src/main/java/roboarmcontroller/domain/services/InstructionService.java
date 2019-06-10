@@ -2,7 +2,10 @@ package roboarmcontroller.domain.services;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import roboarmcontroller.domain.dom.*;
+import roboarmcontroller.domain.dom.Hand;
+import roboarmcontroller.domain.dom.HandType;
+import roboarmcontroller.domain.dom.InstructionLabel;
+import roboarmcontroller.domain.dom.TrackingFrame;
 import roboarmcontroller.domain.services.command.CommandExecutor;
 import roboarmcontroller.domain.services.command.CommandParameters;
 
@@ -13,19 +16,21 @@ public class InstructionService {
     private final Logger log = LoggerFactory.getLogger(InstructionService.class);
 
     private final int DELTA = 10;
-    private final int SERVOS_COUNT = 3;
     private CommandExecutor commandExecutor;
     private TrainingService trainingService;
+    private InstructionClassificationService instructionClassificationService;
+
     // TODO: Get from parameters
-    private boolean trainingMode = true;
+    private boolean trainingMode = false;
 
     public InstructionService() {
-        this(new CommandExecutor(), new TrainingService());
+        this(new CommandExecutor(), new TrainingService(), new InstructionClassificationService());
     }
 
-    public InstructionService(CommandExecutor commandExecutor, TrainingService trainingService) {
+    public InstructionService(CommandExecutor commandExecutor, TrainingService trainingService, InstructionClassificationService instructionClassificationService) {
         this.commandExecutor = commandExecutor;
         this.trainingService = trainingService;
+        this.instructionClassificationService = instructionClassificationService;
     }
 
     public void process(TrackingFrame trackingFrame) {
@@ -48,7 +53,9 @@ public class InstructionService {
 
             if (leftHand.isPresent() && rightHand.isPresent()) {
                 int servoId = this.findServoId(leftHand.get());
+                log.debug("Calculated ServoId={}", servoId);
                 int delta = this.findDelta(rightHand.get());
+                log.debug("Calculated Delta={}", delta);
                 return Optional.of(new CommandParameters(servoId, delta));
             }
 
@@ -60,28 +67,28 @@ public class InstructionService {
     }
 
     private int findServoId(Hand hand) {
-        int servoId = (int) hand.getFingers().stream()
-                .filter(Finger::isExtended)
-                .count();
-
-        if (servoId <= 0 || servoId > SERVOS_COUNT) {
-            throw new RuntimeException("ServoId Out of Bounds, ServoId=" + servoId);
+        InstructionLabel instructionLabel = this.instructionClassificationService.classify(hand);
+        switch (instructionLabel) {
+            case SERVO1:
+                return 1;
+            case SERVO2:
+                return 2;
+            case SERVO3:
+                return 3;
+            default:
+                throw new RuntimeException("ServoId not found. InstructionLabel=" + instructionLabel);
         }
-
-        return servoId;
     }
 
     private int findDelta(Hand hand) {
-        Optional<Finger> index = hand.getFinger(FingerType.INDEX);
-        if (index.isPresent() && index.get().isExtended()) {
-            return DELTA;
+        InstructionLabel instructionLabel = this.instructionClassificationService.classify(hand);
+        switch (instructionLabel) {
+            case DELTA_POSITIVE:
+                return DELTA;
+            case DELTA_NEGATIVE:
+                return DELTA * -1;
+            default:
+                throw new RuntimeException("No Delta Found. InstructionLabel=" + instructionLabel);
         }
-
-        Optional<Finger> thumb = hand.getFinger(FingerType.THUMB);
-        if (thumb.isPresent() && thumb.get().isExtended()) {
-            return DELTA * -1;
-        }
-
-        throw new RuntimeException("No Delta Found");
     }
 }
