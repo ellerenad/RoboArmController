@@ -1,0 +1,46 @@
+@startuml
+
+package "Sensor Framework" {
+    component "HandDataProducer" as HandDataProducer
+}
+
+interface "WebSocket" as WebSocketServer
+HandDataProducer -- WebSocketServer
+
+package "RoboArmController" {
+
+    component "LeapMotionHandler" as WebSocketClient
+    component "DataPublisher" as DataPublisher
+    component "JsonParser" as Parser
+    component "JsonToDomainMapper" as Mapper
+    component "InstructionService" as InstructionService
+    component "Tensorflow Classifier" as Classifier
+    component "Command Executor" as CommandExecutor
+
+    WebSocketServer )- WebSocketClient
+    WebSocketClient --> DataPublisher: calls
+    DataPublisher --> Parser: uses
+    DataPublisher --> Mapper: uses
+    DataPublisher -> InstructionService: calls
+    InstructionService --> Classifier: uses
+    InstructionService -> CommandExecutor: calls
+
+}
+
+interface "Socket" as SocketServer
+CommandExecutor -( SocketServer
+
+
+package RoboArmSimulation {
+
+    component "Server" as InstructionServer
+    component "Gazebo Simulation" as Simulation
+    component "RoboArmPlugin" as ControllerPlugin
+
+    InstructionServer -> ControllerPlugin: calls
+    ControllerPlugin -> Simulation: controls
+    SocketServer - InstructionServer
+
+}
+
+@enduml
