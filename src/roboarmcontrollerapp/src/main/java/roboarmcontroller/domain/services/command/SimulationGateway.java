@@ -8,16 +8,16 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.nio.ByteBuffer;
 
-public class CommandExecutor {
+public class SimulationGateway {
     private final static int SERVER_PORT = 52333;
     private final static String SERVER_HOST = "localhost";
 
-    private final Logger log = LoggerFactory.getLogger(CommandExecutor.class);
+    private final Logger log = LoggerFactory.getLogger(SimulationGateway.class);
     private OutputStream output;
     private int[] intData = new int[2];
     private byte[] bytes = new byte[intData.length * 4];
 
-    public void execute(CommandParameters commandParameters) {
+    public void send(CommandParameters commandParameters) {
         if (output == null) {
             this.initSocket();
         }

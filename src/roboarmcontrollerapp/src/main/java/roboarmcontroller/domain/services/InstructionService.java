@@ -6,7 +6,7 @@ import roboarmcontroller.domain.dom.Hand;
 import roboarmcontroller.domain.dom.HandType;
 import roboarmcontroller.domain.dom.InstructionLabel;
 import roboarmcontroller.domain.dom.TrackingFrame;
-import roboarmcontroller.domain.services.command.CommandExecutor;
+import roboarmcontroller.domain.services.command.SimulationGateway;
 import roboarmcontroller.domain.services.command.CommandParameters;
 
 import java.util.Optional;
@@ -16,7 +16,7 @@ public class InstructionService {
     private final Logger log = LoggerFactory.getLogger(InstructionService.class);
 
     private final int DELTA = 10;
-    private CommandExecutor commandExecutor;
+    private SimulationGateway simulationGateway;
     private TrainingService trainingService;
     private InstructionClassificationService instructionClassificationService;
 
@@ -24,11 +24,11 @@ public class InstructionService {
     private boolean trainingMode = false;
 
     public InstructionService() {
-        this(new CommandExecutor(), new TrainingService(), new InstructionClassificationService());
+        this(new SimulationGateway(), new TrainingService(), new InstructionClassificationService());
     }
 
-    public InstructionService(CommandExecutor commandExecutor, TrainingService trainingService, InstructionClassificationService instructionClassificationService) {
-        this.commandExecutor = commandExecutor;
+    public InstructionService(SimulationGateway simulationGateway, TrainingService trainingService, InstructionClassificationService instructionClassificationService) {
+        this.simulationGateway = simulationGateway;
         this.trainingService = trainingService;
         this.instructionClassificationService = instructionClassificationService;
     }
@@ -41,7 +41,7 @@ public class InstructionService {
             Optional<CommandParameters> commandParameters = this.buildParameters(trackingFrame);
             if (commandParameters.isPresent()) {
                 log.debug("Processing TrackingFrame. CommandParameters = {}", commandParameters.get());
-                this.commandExecutor.execute(commandParameters.get());
+                this.simulationGateway.send(commandParameters.get());
             }
         }
     }

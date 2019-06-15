@@ -31,11 +31,11 @@ class TrainingSetWriterTest {
         hand.setFingers(Arrays.asList(finger1, finger2));
 
         String line = trainingSetWriter.getLine(hand);
-        assertEquals("RIGHT|0.1111|0.2222|0.3333|0.4|0.5|0.6", line);
+        assertEquals("1|0.1111|0.2222|0.3333|0.4|0.5|0.6", line);
 
         hand.setType(HandType.LEFT);
         line = trainingSetWriter.getLine(hand);
-        assertEquals("LEFT|0.1111|0.2222|0.3333|0.4|0.5|0.6", line);
+        assertEquals("0|0.1111|0.2222|0.3333|0.4|0.5|0.6", line);
 
     }
 }

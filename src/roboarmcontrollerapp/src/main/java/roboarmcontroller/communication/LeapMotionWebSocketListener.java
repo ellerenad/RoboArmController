@@ -7,12 +7,12 @@ import org.slf4j.LoggerFactory;
 
 import java.net.URI;
 
-public class LeapMotionHandler extends WebSocketClient {
-    private final Logger log = LoggerFactory.getLogger(LeapMotionHandler.class);
+public class LeapMotionWebSocketListener extends WebSocketClient {
+    private final Logger log = LoggerFactory.getLogger(LeapMotionWebSocketListener.class);
 
     private DataPublisher dataPublisher = new DataPublisher();
 
-    public LeapMotionHandler(URI uri) {
+    public LeapMotionWebSocketListener(URI uri) {
         super(uri);
     }
 

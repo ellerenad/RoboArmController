@@ -1,6 +1,6 @@
 package roboarmcontroller;
 
-import roboarmcontroller.communication.LeapMotionHandler;
+import roboarmcontroller.communication.LeapMotionWebSocketListener;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -15,9 +15,9 @@ public class Application {
             // TODO: Extract to properties config file
             uri = new URI("ws://localhost:6437/v7.json");
 
-            LeapMotionHandler leapMotionHandler = new LeapMotionHandler(uri);
+            LeapMotionWebSocketListener leapMotionWebSocketListener = new LeapMotionWebSocketListener(uri);
 
-            leapMotionHandler.startListener();
+            leapMotionWebSocketListener.startListener();
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
