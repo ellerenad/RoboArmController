@@ -4,22 +4,18 @@ package "Sensor Framework" {
     component "HandDataProducer" as HandDataProducer
 }
 
-interface "WebSocket|" as WebSocketServer
+interface "WebSocket" as WebSocketServer
 HandDataProducer -- WebSocketServer
 
 package "RoboArmController" {
     component "LeapMotionWebSocketListener" as WebSocketClient
-    component "DataPublisher" as DataPublisher
-    component "JsonParser" as Parser
-    component "JsonToDomainMapper" as Mapper
+    component "DataParser" as DataParser
     component "InstructionService" as InstructionService
     component "SimulationGateway" as SimulationGateway
 
     WebSocketServer )- WebSocketClient
-    WebSocketClient --> DataPublisher: calls
-    DataPublisher --> Parser: uses
-    DataPublisher --> Mapper: uses
-    DataPublisher -> InstructionService: calls
+    WebSocketClient -> DataParser: calls
+    DataParser --> InstructionService: calls
     InstructionService -> SimulationGateway: calls
 }
 
@@ -28,7 +24,7 @@ SimulationGateway -( SocketServer
 
 package "Tensorflow Framework" {
     component "Tensorflow Framework" as MLFramework
-    InstructionService ----> MLFramework: uses
+    InstructionService -> MLFramework: uses
 
 }
 

@@ -10,7 +10,7 @@ import java.net.URI;
 public class LeapMotionWebSocketListener extends WebSocketClient {
     private final Logger log = LoggerFactory.getLogger(LeapMotionWebSocketListener.class);
 
-    private DataPublisher dataPublisher = new DataPublisher();
+    private DataParser dataParser = new DataParser();
 
     public LeapMotionWebSocketListener(URI uri) {
         super(uri);
@@ -30,7 +30,7 @@ public class LeapMotionWebSocketListener extends WebSocketClient {
     */
     public void onMessage(String json) {
         log.debug("Message Received {}", json);
-        dataPublisher.publish(json);
+        dataParser.publish(json);
     }
 
     public void onClose(int code, String reason, boolean remote) {
