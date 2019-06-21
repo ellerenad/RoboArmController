@@ -4,8 +4,8 @@ package "Sensor Framework" {
     component "HandDataProducer" as HandDataProducer
 }
 
-interface "WebSocket" as WebSocketServer
-HandDataProducer -- WebSocketServer
+interface "\nWebSocket" as WebSocketServer
+HandDataProducer - WebSocketServer
 
 package "RoboArmController" {
     component "LeapMotionWebSocketListener" as WebSocketClient

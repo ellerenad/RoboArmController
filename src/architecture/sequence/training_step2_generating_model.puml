@@ -1,18 +1,6 @@
 @startuml
-title Training Process
-== Generate Training Dataset ==
+title Training Process Step 2: Training the model
 actor User
-User -> SensorFramework: Inputs data
-activate SensorFramework
-SensorFramework -> RoboArmController: provides hand data
-activate RoboArmController
-RoboArmController -> RoboArmController: transforms data
-RoboArmController -> RoboArmController: writes training dataset to a file
-RoboArmController --> User: Returns path   to the file dataset
-deactivate SensorFramework
-deactivate RoboArmController
-
-== Training the model ==
 User -> TrainingModule: Starts the training with the dataset
 activate TrainingModule
 TrainingModule -> TensorflowFramework : Configures model, provides data

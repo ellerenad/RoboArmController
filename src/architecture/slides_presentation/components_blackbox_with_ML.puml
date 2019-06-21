@@ -1,0 +1,28 @@
+@startuml
+
+component "Sensor Framework" as SensorFramework
+
+interface " " as SensorInterface
+SensorFramework - SensorInterface
+
+component "RoboArmController"
+SensorInterface )- RoboArmController
+
+component "Machine Learning Framework" as MLFramework
+RoboArmController --> MLFramework: uses
+
+component TrainingModule as "Training Module"
+TrainingModule -> MLFramework: uses
+
+interface " " as Files
+Files -- TrainingModule
+RoboArmController -- Files
+
+component RoboArmSimulation
+
+interface " " as RoboArmInterface
+RoboArmController -( RoboArmInterface
+RoboArmInterface - RoboArmSimulation
+
+
+@enduml
