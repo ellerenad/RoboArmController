@@ -17,3 +17,11 @@ Open Issues:
 
 - TCP Sockets on the simulation are blocking, causing the gazebo simulation to halt when there is no data. Possible partial fix: Open the socket on some event called after loading of the world.
 - There are TODOs on the code :) 
+- The simulation is just loaded if the startGazeboSim.sh script is executed on the RoboArmSimulation path, like:
+
+
+```bash
+cd RoboArmSimulation
+./startGazeboSim.sh
+```
+
