@@ -11,7 +11,7 @@ This document aims to gather ideas for next steps:
 - Do integration tests 
 - Data types on the TCP sockets communication: Would it be useful to send float instead of int?
 - Generating the training data set: evaluate whether getting a relative position of the fingers make more sense. e.g. (tip position) - (center of the palm position) or (tip position) - (base of the metacarpal position)
-
+- Use Ansible or similar to setup the environment with the required tools.
 
 Open Issues:
 
