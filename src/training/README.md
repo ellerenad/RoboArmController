@@ -19,7 +19,10 @@ pip install --ignore-installed --upgrade pandas
 ```
 
 # Execution
+
+Execute the following shell commands
+
 ```
 conda activate roboarmcontroller
-start jupyter notebook
+jupyter notebook
 ```
