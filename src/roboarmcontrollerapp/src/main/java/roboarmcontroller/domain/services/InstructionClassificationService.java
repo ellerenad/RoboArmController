@@ -10,23 +10,23 @@ import roboarmcontroller.domain.dom.InstructionLabel;
 public class InstructionClassificationService {
 
     public final static int FIELD_COUNT = 16;
-
-    // TODO: Extract to properties
-    // TODO: Provide properly: this path format is for unit tests
-    //private final String savedModelPath = "../../trainingAssets/models/1560101516";
-    // TODO: Provide properly: this path format is for execution
-    private final String savedModelPath = "trainingAssets/models/1560159859969/1560160000";
-    private final String savedModelTags = "serve";
-
     private final static String FEED_OPERATION = "dnn/input_from_feature_columns/input_layer/concat";
     private final static String FETCH_OPERATION_CLASS_ID = "dnn/head/predictions/class_ids";
+    private final static String SAVED_MODEL_TAGS = "serve";
+
     private Session modelBundleSession;
     private InstructionLabel[] instructionLabels;
 
+    // TODO: Extract to properties
+    String savedModelPath = "trainingAssets/models/1560159859969/1560160000";
+
+    void setSavedModelPath(String savedModelPath) {
+        this.savedModelPath = savedModelPath;
+    }
 
     public InstructionLabel classify(Hand hand) {
         if (modelBundleSession == null) {
-            modelBundleSession = SavedModelBundle.load(savedModelPath, savedModelTags).session();
+            modelBundleSession = SavedModelBundle.load(savedModelPath, SAVED_MODEL_TAGS).session();
             instructionLabels = InstructionLabel.values();
         }
 
@@ -35,7 +35,8 @@ public class InstructionClassificationService {
         Tensor result = this.modelBundleSession.runner()
                 .feed(FEED_OPERATION, inputTensor)
                 .fetch(FETCH_OPERATION_CLASS_ID)
-                .run().get(0);
+                .run()
+                .get(0);
 
         long[] buffer = new long[1];
         result.copyTo(buffer);

@@ -20,6 +20,8 @@ class InstructionClassificationServiceTest {
     @BeforeEach
     void setUp() {
         this.instructionClassificationService = new InstructionClassificationService();
+        String savedModelPath = this.readFileFromResources("trainedModel");
+        this.instructionClassificationService.setSavedModelPath(savedModelPath);
     }
 
     @Test
@@ -160,7 +162,12 @@ class InstructionClassificationServiceTest {
 
     }
 
-
+    /**
+     * Utility method to make testing easier. There is a unit test for it as well.
+     *
+     * @param line
+     * @return
+     */
     private Hand getHandFromTrainingSetLine(String line) {
         String[] tokens = line.split(Pattern.quote("|"));
 
@@ -193,6 +200,11 @@ class InstructionClassificationServiceTest {
         return hand;
     }
 
+    /**
+     *  Utility method to make testing easier. There is a unit test for it as well.
+     * @param line
+     * @return
+     */
     private InstructionLabel getInstructionLabelFromTrainingSetLine(String line) {
         String[] tokens = line.split(Pattern.quote("|"));
 
@@ -202,6 +214,11 @@ class InstructionClassificationServiceTest {
 
         int ordinal = Integer.parseInt(tokens[FIELD_COUNT - 1].trim());
         return InstructionLabel.values()[ordinal];
+    }
+
+    private String readFileFromResources(String resourcePath) {
+        return getClass().getClassLoader().getResource(resourcePath).getPath();
+
     }
 
 }
