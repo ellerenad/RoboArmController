@@ -1,9 +1,9 @@
-package roboarmcontroller.communication;
+package roboarmcontroller.infrastructure.communication;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import roboarmcontroller.communication.parser.JsonTrackingFrame;
-import roboarmcontroller.communication.parser.JsonTrackingFrameParser;
+import roboarmcontroller.infrastructure.communication.parser.JsonTrackingFrame;
+import roboarmcontroller.infrastructure.communication.parser.JsonTrackingFrameParser;
 import roboarmcontroller.domain.dom.*;
 
 import java.io.BufferedReader;

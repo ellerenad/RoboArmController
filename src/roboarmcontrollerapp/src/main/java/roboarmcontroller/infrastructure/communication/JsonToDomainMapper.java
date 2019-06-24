@@ -1,13 +1,15 @@
-package roboarmcontroller.communication;
+package roboarmcontroller.infrastructure.communication;
 
-import roboarmcontroller.communication.parser.JsonHand;
-import roboarmcontroller.communication.parser.JsonPointable;
-import roboarmcontroller.communication.parser.JsonTrackingFrame;
+import org.springframework.stereotype.Component;
+import roboarmcontroller.infrastructure.communication.parser.JsonHand;
+import roboarmcontroller.infrastructure.communication.parser.JsonPointable;
+import roboarmcontroller.infrastructure.communication.parser.JsonTrackingFrame;
 import roboarmcontroller.domain.dom.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class JsonToDomainMapper {
 
     private static final FingerType[] FINGER_TYPES = FingerType.values();

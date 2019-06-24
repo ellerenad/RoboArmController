@@ -1,7 +1,9 @@
-package roboarmcontroller.communication.parser;
+package roboarmcontroller.infrastructure.communication.parser;
 
 import com.google.gson.Gson;
+import org.springframework.stereotype.Component;
 
+@Component
 public class JsonTrackingFrameParser {
 
     private Gson gson = new Gson();

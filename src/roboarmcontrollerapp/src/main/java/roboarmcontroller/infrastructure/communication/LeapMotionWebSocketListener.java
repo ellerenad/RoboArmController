@@ -1,23 +1,32 @@
-package roboarmcontroller.communication;
+package roboarmcontroller.infrastructure.communication;
 
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.net.URI;
 
+@Component
 public class LeapMotionWebSocketListener extends WebSocketClient {
     private final Logger log = LoggerFactory.getLogger(LeapMotionWebSocketListener.class);
 
-    private DataParser dataParser = new DataParser();
+    private DataParser dataParser;
 
-    public LeapMotionWebSocketListener(URI uri) {
+    @Autowired
+    public LeapMotionWebSocketListener(@Value("${handsensor.websocket.uri.listen}") URI uri, DataParser dataParser) {
         super(uri);
+        this.dataParser = dataParser;
     }
 
+    @PostConstruct
     public void startListener() {
-        connect();
+        log.info("started listening at: {}", this.getURI());
+        //connect();
     }
 
     public void onOpen(ServerHandshake serverHandshake) {

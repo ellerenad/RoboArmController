@@ -1,4 +1,4 @@
-package roboarmcontroller.file;
+package roboarmcontroller.infrastructure.file;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

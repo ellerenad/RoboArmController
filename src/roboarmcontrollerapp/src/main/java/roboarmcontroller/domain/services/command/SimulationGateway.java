@@ -2,12 +2,14 @@ package roboarmcontroller.domain.services.command;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.nio.ByteBuffer;
 
+@Component
 public class SimulationGateway {
     private final static int SERVER_PORT = 52333;
     private final static String SERVER_HOST = "localhost";

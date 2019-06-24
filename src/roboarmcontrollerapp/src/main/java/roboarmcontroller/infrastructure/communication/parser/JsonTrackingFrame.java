@@ -1,4 +1,4 @@
-package roboarmcontroller.communication.parser;
+package roboarmcontroller.infrastructure.communication.parser;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -1,9 +1,11 @@
-package roboarmcontroller.communication;
+package roboarmcontroller.infrastructure.communication;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import roboarmcontroller.communication.parser.JsonTrackingFrame;
-import roboarmcontroller.communication.parser.JsonTrackingFrameParser;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import roboarmcontroller.infrastructure.communication.parser.JsonTrackingFrame;
+import roboarmcontroller.infrastructure.communication.parser.JsonTrackingFrameParser;
 import roboarmcontroller.domain.dom.TrackingFrame;
 import roboarmcontroller.domain.services.InstructionService;
 
@@ -11,6 +13,7 @@ import java.math.BigInteger;
 
 @SuppressWarnings("WeakerAccess")
 // TODO: Refactor - find a better name (and update the architecture)
+@Component
 public class DataParser {
 
     private final Logger log = LoggerFactory.getLogger(DataParser.class);
@@ -20,10 +23,7 @@ public class DataParser {
     private JsonToDomainMapper jsonToDomainMapper;
     private InstructionService instructionService;
 
-    public DataParser() {
-        this(new JsonTrackingFrameParser(), new JsonToDomainMapper(), new InstructionService());
-    }
-
+    @Autowired
     public DataParser(JsonTrackingFrameParser jsonTrackingFrameParser, JsonToDomainMapper jsonToDomainMapper, InstructionService instructionService) {
         this.jsonTrackingFrameParser = jsonTrackingFrameParser;
         this.jsonToDomainMapper = jsonToDomainMapper;

@@ -1,7 +1,9 @@
-package roboarmcontroller.file;
+package roboarmcontroller.infrastructure.file;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import roboarmcontroller.domain.dom.Hand;
 import roboarmcontroller.domain.dom.InstructionLabel;
 
@@ -12,17 +14,24 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class TrainingSetWriter {
     private final Logger log = LoggerFactory.getLogger(TrainingSetWriter.class);
+
+    private static final String OUTPUT_FILE_EXTENTION = ".txt";
 
     FileWriter fileWriter;
     PrintWriter printWriter;
     String fileName;
     String fileStamp;
 
+    public TrainingSetWriter(@Value("${training.output.file.path}") String fileName) {
+        this.fileName = fileName;
+    }
+
     public void init() {
         fileStamp = String.valueOf(System.currentTimeMillis());
-        fileName = "trainingAssets/sets/trainingSet_" + fileStamp + ".txt";
+        fileName = this.fileName + fileStamp + OUTPUT_FILE_EXTENTION;
         try {
             File file = new File(fileName);
             file.createNewFile();

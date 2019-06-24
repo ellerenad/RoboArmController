@@ -1,4 +1,4 @@
-package roboarmcontroller.communication.parser;
+package roboarmcontroller.infrastructure.communication.parser;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

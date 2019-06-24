@@ -2,6 +2,9 @@ package roboarmcontroller.domain.services;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import roboarmcontroller.domain.dom.Hand;
 import roboarmcontroller.domain.dom.HandType;
 import roboarmcontroller.domain.dom.InstructionLabel;
@@ -12,6 +15,7 @@ import roboarmcontroller.domain.services.command.CommandParameters;
 import java.util.Optional;
 
 @SuppressWarnings("WeakerAccess")
+@Component
 public class InstructionService {
     private final Logger log = LoggerFactory.getLogger(InstructionService.class);
 
@@ -20,17 +24,14 @@ public class InstructionService {
     private TrainingService trainingService;
     private InstructionClassificationService instructionClassificationService;
 
-    // TODO: Get from parameters
-    private boolean trainingMode = false;
+    private boolean trainingMode;
 
-    public InstructionService() {
-        this(new SimulationGateway(), new TrainingService(), new InstructionClassificationService());
-    }
-
-    public InstructionService(SimulationGateway simulationGateway, TrainingService trainingService, InstructionClassificationService instructionClassificationService) {
+    @Autowired
+    public InstructionService(@Value("$(execution.mode.training") boolean trainingMode, SimulationGateway simulationGateway, TrainingService trainingService, InstructionClassificationService instructionClassificationService) {
         this.simulationGateway = simulationGateway;
         this.trainingService = trainingService;
         this.instructionClassificationService = instructionClassificationService;
+        this.trainingMode = trainingMode;
     }
 
     public void process(TrackingFrame trackingFrame) {

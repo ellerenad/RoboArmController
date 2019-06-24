@@ -1,4 +1,4 @@
-package roboarmcontroller.communication;
+package roboarmcontroller.infrastructure.communication;
 
 import java.io.IOException;
 import java.io.OutputStream;

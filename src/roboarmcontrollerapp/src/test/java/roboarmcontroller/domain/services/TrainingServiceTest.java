@@ -8,7 +8,7 @@ import roboarmcontroller.domain.dom.Hand;
 import roboarmcontroller.domain.dom.HandType;
 import roboarmcontroller.domain.dom.InstructionLabel;
 import roboarmcontroller.domain.dom.TrackingFrame;
-import roboarmcontroller.file.TrainingSetWriter;
+import roboarmcontroller.infrastructure.file.TrainingSetWriter;
 
 import java.util.Arrays;
 

@@ -1,5 +1,6 @@
 package roboarmcontroller.domain.services;
 
+import org.springframework.stereotype.Service;
 import org.tensorflow.SavedModelBundle;
 import org.tensorflow.Session;
 import org.tensorflow.Tensor;
@@ -7,6 +8,7 @@ import roboarmcontroller.domain.dom.Finger;
 import roboarmcontroller.domain.dom.Hand;
 import roboarmcontroller.domain.dom.InstructionLabel;
 
+@Service
 public class InstructionClassificationService {
 
     public final static int FIELD_COUNT = 16;

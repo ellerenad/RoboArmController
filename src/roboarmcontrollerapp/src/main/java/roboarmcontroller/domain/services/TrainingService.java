@@ -2,11 +2,15 @@ package roboarmcontroller.domain.services;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import roboarmcontroller.domain.dom.HandType;
 import roboarmcontroller.domain.dom.InstructionLabel;
 import roboarmcontroller.domain.dom.TrackingFrame;
-import roboarmcontroller.file.TrainingSetWriter;
+import roboarmcontroller.infrastructure.file.TrainingSetWriter;
 
+@Service
 public class TrainingService {
     private final Logger log = LoggerFactory.getLogger(TrainingService.class);
     static int MAX_CYCLES = 1000;
@@ -17,10 +21,7 @@ public class TrainingService {
     TrainingSetWriter trainingSetWriter;
     ExitService exitService;
 
-    public TrainingService() {
-        this(new TrainingSetWriter(), new ExitService());
-    }
-
+    @Autowired
     public TrainingService(TrainingSetWriter trainingSetWriter, ExitService exitService) {
         this.trainingSetWriter = trainingSetWriter;
         this.exitService = exitService;
