@@ -1,0 +1,20 @@
+@startuml
+
+
+component "Sensor Framework" as SensorFramework
+
+interface "\nWebsockets" as SensorInterface
+SensorFramework - SensorInterface
+
+component "RoboArmController"
+SensorInterface )- RoboArmController
+
+component RoboArmSimulation
+
+interface "\nCommand Line" as RoboArmInterface
+RoboArmController -( RoboArmInterface
+RoboArmInterface - RoboArmSimulation
+
+
+
+@enduml

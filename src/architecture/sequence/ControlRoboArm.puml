@@ -1,0 +1,15 @@
+@startuml
+actor User
+User -> SensorFramework: Inputs data
+SensorFramework -> RoboArmController: provides hand data
+RoboArmController -> RoboArmController: transforms data
+RoboArmController-> TensorflowFramework: classify left hand data
+TensorflowFramework --> RoboArmController: instruction label
+note right: The left hand defines the servoId to move
+RoboArmController-> TensorflowFramework: classify right hand data
+TensorflowFramework --> RoboArmController: instruction label
+note right: The right hand defines a positive or negative constant delta
+RoboArmController -> RoboArmSimulation: sends instruction (ServoId,Delta)
+RoboArmSimulation -> RoboArmSimulation: processes data and\n updates simulation visualization
+RoboArmSimulation --> User: shows updated simulation
+@enduml

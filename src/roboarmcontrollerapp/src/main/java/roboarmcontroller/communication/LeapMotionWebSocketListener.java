@@ -7,12 +7,12 @@ import org.slf4j.LoggerFactory;
 
 import java.net.URI;
 
-public class LeapMotionHandler extends WebSocketClient {
-    private final Logger log = LoggerFactory.getLogger(LeapMotionHandler.class);
+public class LeapMotionWebSocketListener extends WebSocketClient {
+    private final Logger log = LoggerFactory.getLogger(LeapMotionWebSocketListener.class);
 
-    private DataPublisher dataPublisher = new DataPublisher();
+    private DataParser dataParser = new DataParser();
 
-    public LeapMotionHandler(URI uri) {
+    public LeapMotionWebSocketListener(URI uri) {
         super(uri);
     }
 
@@ -30,7 +30,7 @@ public class LeapMotionHandler extends WebSocketClient {
     */
     public void onMessage(String json) {
         log.debug("Message Received {}", json);
-        dataPublisher.publish(json);
+        dataParser.publish(json);
     }
 
     public void onClose(int code, String reason, boolean remote) {

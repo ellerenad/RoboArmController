@@ -1,0 +1,15 @@
+@startuml
+title Training Process Step 2: Training the model
+actor User
+User -> TrainingModule: Starts the training with the dataset
+activate TrainingModule
+TrainingModule -> TensorflowFramework : Configures model, provides data
+activate TensorflowFramework
+TensorflowFramework -> TensorflowFramework: trains Machine Learning model
+TensorflowFramework --> TrainingModule: returns reference to the model
+TrainingModule -> TensorflowFramework: request to export trained model
+TensorflowFramework --> User: returns path to trained model
+deactivate TrainingModule
+deactivate TensorflowFramework
+
+@enduml

@@ -10,20 +10,21 @@ import roboarmcontroller.domain.services.InstructionService;
 import java.math.BigInteger;
 
 @SuppressWarnings("WeakerAccess")
-public class DataPublisher {
+// TODO: Refactor - find a better name (and update the architecture)
+public class DataParser {
 
-    private final Logger log = LoggerFactory.getLogger(DataPublisher.class);
+    private final Logger log = LoggerFactory.getLogger(DataParser.class);
     private final static BigInteger ZERO_BIG_INTEGER = BigInteger.valueOf(0);
 
     private JsonTrackingFrameParser jsonTrackingFrameParser;
     private JsonToDomainMapper jsonToDomainMapper;
     private InstructionService instructionService;
 
-    public DataPublisher() {
+    public DataParser() {
         this(new JsonTrackingFrameParser(), new JsonToDomainMapper(), new InstructionService());
     }
 
-    public DataPublisher(JsonTrackingFrameParser jsonTrackingFrameParser, JsonToDomainMapper jsonToDomainMapper, InstructionService instructionService) {
+    public DataParser(JsonTrackingFrameParser jsonTrackingFrameParser, JsonToDomainMapper jsonToDomainMapper, InstructionService instructionService) {
         this.jsonTrackingFrameParser = jsonTrackingFrameParser;
         this.jsonToDomainMapper = jsonToDomainMapper;
         this.instructionService = instructionService;

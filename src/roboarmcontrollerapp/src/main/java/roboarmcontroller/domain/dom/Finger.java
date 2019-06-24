@@ -5,6 +5,7 @@ public class Finger {
     private int handId;
     private boolean extended;
     private FingerType type;
+    private FingerPosition position;
 
     public int getId() {
         return id;
@@ -36,5 +37,13 @@ public class Finger {
 
     public void setType(FingerType type) {
         this.type = type;
+    }
+
+    public FingerPosition getPosition() {
+        return position;
+    }
+
+    public void setPosition(FingerPosition position) {
+        this.position = position;
     }
 }

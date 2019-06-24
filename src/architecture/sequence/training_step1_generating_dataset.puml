@@ -1,0 +1,13 @@
+@startuml
+title Training Process Step 1: Generate Training Dataset
+actor User
+User -> SensorFramework: Inputs data
+activate SensorFramework
+SensorFramework -> RoboArmController: provides hand data
+activate RoboArmController
+RoboArmController -> RoboArmController: transforms data
+RoboArmController -> RoboArmController: writes training dataset to a file
+RoboArmController --> User: Returns path   to the file dataset
+deactivate SensorFramework
+deactivate RoboArmController
+@enduml
