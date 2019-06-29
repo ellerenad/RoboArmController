@@ -19,13 +19,13 @@ public class SimulationGateway {
     private int[] intData = new int[2];
     private byte[] bytes = new byte[intData.length * 4];
 
-    public void send(CommandParameters commandParameters) {
+    public void send(Command command) {
         if (output == null) {
             this.initSocket();
         }
 
-        intData[0] = commandParameters.getServoId();
-        intData[1] = commandParameters.getDelta();
+        intData[0] = command.getServoId();
+        intData[1] = command.getDelta();
         byte[] data = convertIntArrayToByteArray(intData);
         try {
             output.write(data);

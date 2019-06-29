@@ -9,7 +9,7 @@ import roboarmcontroller.domain.dom.Hand;
 import roboarmcontroller.domain.dom.HandType;
 import roboarmcontroller.domain.dom.InstructionLabel;
 import roboarmcontroller.domain.dom.TrackingFrame;
-import roboarmcontroller.domain.services.command.CommandParameters;
+import roboarmcontroller.domain.services.command.Command;
 import roboarmcontroller.domain.services.command.SimulationGateway;
 
 import javax.annotation.PostConstruct;
@@ -52,15 +52,15 @@ public class InstructionService {
         if (this.trainingMode) {
             this.trainingService.process(trackingFrame);
         } else {
-            Optional<CommandParameters> commandParameters = this.buildParameters(trackingFrame);
+            Optional<Command> commandParameters = this.buildParameters(trackingFrame);
             if (commandParameters.isPresent()) {
-                log.debug("Processing TrackingFrame. CommandParameters = {}", commandParameters.get());
+                log.debug("Processing TrackingFrame. Command = {}", commandParameters.get());
                 this.simulationGateway.send(commandParameters.get());
             }
         }
     }
 
-    private Optional<CommandParameters> buildParameters(TrackingFrame trackingFrame) {
+    private Optional<Command> buildParameters(TrackingFrame trackingFrame) {
         try {
             Optional<Hand> leftHand = trackingFrame.getHand(HandType.LEFT);
             Optional<Hand> rightHand = trackingFrame.getHand(HandType.RIGHT);
@@ -70,7 +70,7 @@ public class InstructionService {
                 log.debug("Calculated ServoId={}", servoId);
                 int delta = this.findDelta(rightHand.get());
                 log.debug("Calculated Delta={}", delta);
-                return Optional.of(new CommandParameters(servoId, delta));
+                return Optional.of(new Command(servoId, delta));
             }
 
         } catch (RuntimeException re) {
