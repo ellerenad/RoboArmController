@@ -10,13 +10,13 @@ HandDataProducer - WebSocketServer
 package "RoboArmController" {
     component "LeapMotionWebSocketListener" as WebSocketClient
     component "DataParser" as DataParser
-    component "InstructionService" as InstructionService
+    component "TrackingFrameProcessor" as TrackingFrameProcessor
     component "SimulationGateway" as SimulationGateway
 
     WebSocketServer )- WebSocketClient
     WebSocketClient -> DataParser: calls
-    DataParser --> InstructionService: calls
-    InstructionService -> SimulationGateway: calls
+    DataParser --> TrackingFrameProcessor: calls
+    TrackingFrameProcessor -> SimulationGateway: calls
 }
 
 interface "TCP\nSocket" as SocketServer
@@ -24,7 +24,7 @@ SimulationGateway -( SocketServer
 
 package "Tensorflow Framework" {
     component "Tensorflow Framework" as MLFramework
-    InstructionService -> MLFramework: uses
+    TrackingFrameProcessor -> MLFramework: uses
 
 }
 
@@ -36,7 +36,7 @@ package "Training Module" {
 interface "Files" as Files
 
 Files -- ModelGenerator
-InstructionService -- Files
+TrackingFrameProcessor -- Files
 
 
 package RoboArmSimulation {

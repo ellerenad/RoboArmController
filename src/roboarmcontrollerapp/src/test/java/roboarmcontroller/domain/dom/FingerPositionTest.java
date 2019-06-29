@@ -2,6 +2,7 @@ package roboarmcontroller.domain.dom;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import roboarmcontroller.domain.dom.hands.FingerPosition;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

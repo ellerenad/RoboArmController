@@ -4,11 +4,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Matchers;
 import org.mockito.Mockito;
-import roboarmcontroller.domain.dom.Hand;
-import roboarmcontroller.domain.dom.HandType;
 import roboarmcontroller.domain.dom.InstructionLabel;
-import roboarmcontroller.domain.dom.TrackingFrame;
-import roboarmcontroller.file.TrainingSetWriter;
+import roboarmcontroller.domain.dom.hands.Hand;
+import roboarmcontroller.domain.dom.hands.HandType;
+import roboarmcontroller.domain.dom.hands.TrackingFrame;
 
 import java.util.Arrays;
 
