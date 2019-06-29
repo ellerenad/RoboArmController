@@ -13,11 +13,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TrainingSetWriterTest {
 
+
     TrainingSetWriter trainingSetWriter;
 
     @BeforeEach
     void setUp() {
-        this.trainingSetWriter = new TrainingSetWriter();
+        // TODO: Fix the path of the file if unit testing the actual writing
+        this.trainingSetWriter = new TrainingSetWriter("");
     }
 
     @Test
