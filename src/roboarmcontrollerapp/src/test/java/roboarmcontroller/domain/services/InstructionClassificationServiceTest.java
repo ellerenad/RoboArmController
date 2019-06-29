@@ -11,6 +11,9 @@ import java.util.regex.Pattern;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+// TODO: Improve
+// Note: Asserting that all the predictions are what we expect is not the best way of testing:
+// Machine learning models rarely have 100% confidence - some degree of tolerance should be accepted
 class InstructionClassificationServiceTest {
 
     private static int FIELD_COUNT = InstructionClassificationService.FIELD_COUNT + 1;
@@ -19,9 +22,8 @@ class InstructionClassificationServiceTest {
 
     @BeforeEach
     void setUp() {
-        this.instructionClassificationService = new InstructionClassificationService();
         String savedModelPath = this.readFileFromResources("trainedModel");
-        this.instructionClassificationService.setSavedModelPath(savedModelPath);
+        this.instructionClassificationService = new InstructionClassificationService(savedModelPath);
     }
 
     @Test

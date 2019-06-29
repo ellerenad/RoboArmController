@@ -26,7 +26,7 @@ public class LeapMotionWebSocketListener extends WebSocketClient {
     @PostConstruct
     public void startListener() {
         log.info("started listening at: {}", this.getURI());
-        //connect();
+        connect();
     }
 
     public void onOpen(ServerHandshake serverHandshake) {

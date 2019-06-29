@@ -1,5 +1,6 @@
 package roboarmcontroller.domain.services;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.tensorflow.SavedModelBundle;
 import org.tensorflow.Session;
@@ -19,10 +20,9 @@ public class InstructionClassificationService {
     private Session modelBundleSession;
     private InstructionLabel[] instructionLabels;
 
-    // TODO: Extract to properties
-    String savedModelPath = "trainingAssets/models/1560159859969/1560160000";
+    String savedModelPath;
 
-    void setSavedModelPath(String savedModelPath) {
+    public InstructionClassificationService(@Value("${machine.learning.controlling.input.exported.model.path}") String savedModelPath) {
         this.savedModelPath = savedModelPath;
     }
 
@@ -49,8 +49,7 @@ public class InstructionClassificationService {
 
 
     private static Tensor createInputTensor(Hand hand) {
-        // order of the data on the input: PetalLength, PetalWidth, SepalLength, SepalWidth
-        // (taken from the saved_model, node dnn/input_from_feature_columns/input_layer/concat)
+        // the order of the data on the input was taken from the saved_model, node dnn/input_from_feature_columns/input_layer/concat
         float[] input = new float[FIELD_COUNT];
 
         for (int i = 0; i < hand.getFingers().size(); i++) {

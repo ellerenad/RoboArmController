@@ -25,7 +25,7 @@ public class TrainingSetWriter {
     String fileName;
     String fileStamp;
 
-    public TrainingSetWriter(@Value("${training.output.file.path}") String fileName) {
+    public TrainingSetWriter(@Value("${machine.learning.training.output.file.path}") String fileName) {
         this.fileName = fileName;
     }
 

@@ -4,18 +4,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import roboarmcontroller.domain.dom.Hand;
 import roboarmcontroller.domain.dom.HandType;
 import roboarmcontroller.domain.dom.InstructionLabel;
 import roboarmcontroller.domain.dom.TrackingFrame;
-import roboarmcontroller.domain.services.command.SimulationGateway;
 import roboarmcontroller.domain.services.command.CommandParameters;
+import roboarmcontroller.domain.services.command.SimulationGateway;
 
+import javax.annotation.PostConstruct;
 import java.util.Optional;
 
 @SuppressWarnings("WeakerAccess")
-@Component
+@Service
 public class InstructionService {
     private final Logger log = LoggerFactory.getLogger(InstructionService.class);
 
@@ -27,11 +28,23 @@ public class InstructionService {
     private boolean trainingMode;
 
     @Autowired
-    public InstructionService(@Value("$(execution.mode.training") boolean trainingMode, SimulationGateway simulationGateway, TrainingService trainingService, InstructionClassificationService instructionClassificationService) {
+    public InstructionService(@Value("${execution.mode.training}") boolean trainingMode,
+                              SimulationGateway simulationGateway,
+                              TrainingService trainingService,
+                              InstructionClassificationService instructionClassificationService) {
         this.simulationGateway = simulationGateway;
         this.trainingService = trainingService;
         this.instructionClassificationService = instructionClassificationService;
         this.trainingMode = trainingMode;
+    }
+
+    @PostConstruct
+    public void afterInit() {
+        if (this.trainingMode) {
+            log.info("Running on Training Mode. Please place your hands over the sensor.");
+        } else {
+            log.info("Running on Controlling Mode. Please place your hands over the sensor.");
+        }
     }
 
     public void process(TrackingFrame trackingFrame) {
