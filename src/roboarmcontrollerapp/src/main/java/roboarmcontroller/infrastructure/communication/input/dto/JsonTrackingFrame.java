@@ -1,4 +1,4 @@
-package roboarmcontroller.infrastructure.communication.parser;
+package roboarmcontroller.infrastructure.communication.input.dto;
 
 import com.google.gson.annotations.SerializedName;
 

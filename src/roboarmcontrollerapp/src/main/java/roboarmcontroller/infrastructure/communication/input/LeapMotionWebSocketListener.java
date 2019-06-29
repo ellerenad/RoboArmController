@@ -1,4 +1,4 @@
-package roboarmcontroller.infrastructure.communication;
+package roboarmcontroller.infrastructure.communication.input;
 
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import roboarmcontroller.infrastructure.communication.parser.DataParser;
 
 import javax.annotation.PostConstruct;
 import java.net.URI;

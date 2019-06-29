@@ -1,4 +1,4 @@
-package roboarmcontroller.infrastructure.communication;
+package roboarmcontroller.infrastructure.communication.parser;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import roboarmcontroller.domain.dom.hands.TrackingFrame;
 import roboarmcontroller.domain.services.InstructionService;
-import roboarmcontroller.infrastructure.communication.parser.JsonTrackingFrame;
-import roboarmcontroller.infrastructure.communication.parser.JsonTrackingFrameParser;
+import roboarmcontroller.infrastructure.communication.input.dto.JsonTrackingFrame;
+import roboarmcontroller.infrastructure.communication.input.dto.JsonTrackingFrameParser;
 
 import java.math.BigInteger;
 

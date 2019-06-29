@@ -1,4 +1,4 @@
-package roboarmcontroller.infrastructure.communication.parser;
+package roboarmcontroller.infrastructure.communication.input.dto;
 
 public class JsonHand {
     private int id;

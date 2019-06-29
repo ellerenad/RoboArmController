@@ -2,6 +2,10 @@ package roboarmcontroller.infrastructure.communication.parser;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import roboarmcontroller.infrastructure.communication.input.dto.JsonHand;
+import roboarmcontroller.infrastructure.communication.input.dto.JsonPointable;
+import roboarmcontroller.infrastructure.communication.input.dto.JsonTrackingFrame;
+import roboarmcontroller.infrastructure.communication.input.dto.JsonTrackingFrameParser;
 
 import java.io.BufferedReader;
 import java.io.File;

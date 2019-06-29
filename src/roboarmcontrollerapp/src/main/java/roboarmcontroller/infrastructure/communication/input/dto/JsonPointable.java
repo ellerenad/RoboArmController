@@ -1,4 +1,4 @@
-package roboarmcontroller.infrastructure.communication.parser;
+package roboarmcontroller.infrastructure.communication.input.dto;
 
 public class JsonPointable {
     private int id;

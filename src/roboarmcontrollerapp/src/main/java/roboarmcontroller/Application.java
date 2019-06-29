@@ -2,7 +2,6 @@ package roboarmcontroller;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import roboarmcontroller.infrastructure.communication.LeapMotionWebSocketListener;
 
 @SpringBootApplication
 public class Application {
