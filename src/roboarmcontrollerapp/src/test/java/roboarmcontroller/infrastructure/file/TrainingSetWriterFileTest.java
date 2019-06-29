@@ -11,15 +11,15 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class TrainingSetWriterTest {
+class TrainingSetWriterFileTest {
 
 
-    TrainingSetWriter trainingSetWriter;
+    TrainingSetWriterFile trainingSetWriter;
 
     @BeforeEach
     void setUp() {
         // TODO: Fix the path of the file if unit testing the actual writing
-        this.trainingSetWriter = new TrainingSetWriter("");
+        this.trainingSetWriter = new TrainingSetWriterFile("");
     }
 
     @Test

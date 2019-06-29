@@ -8,7 +8,7 @@ import roboarmcontroller.domain.dom.InstructionLabel;
 import roboarmcontroller.domain.dom.hands.Hand;
 import roboarmcontroller.domain.dom.hands.HandType;
 import roboarmcontroller.domain.dom.hands.TrackingFrame;
-import roboarmcontroller.infrastructure.file.TrainingSetWriter;
+import roboarmcontroller.infrastructure.file.TrainingSetWriterFile;
 
 import java.util.Arrays;
 
@@ -24,7 +24,7 @@ class TrainingServiceTest {
 
     @BeforeEach
     public void setUp() {
-        this.trainingSetWriterMock = Mockito.mock(TrainingSetWriter.class);
+        this.trainingSetWriterMock = Mockito.mock(TrainingSetWriterFile.class);
         this.exitServiceMock = Mockito.mock(ExitService.class);
         this.trainingService = new TrainingService(trainingSetWriterMock, exitServiceMock);
     }

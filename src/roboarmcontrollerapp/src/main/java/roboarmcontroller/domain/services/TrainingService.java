@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import roboarmcontroller.domain.dom.InstructionLabel;
 import roboarmcontroller.domain.dom.hands.HandType;
 import roboarmcontroller.domain.dom.hands.TrackingFrame;
-import roboarmcontroller.infrastructure.file.TrainingSetWriter;
 
 @Service
 public class TrainingService {

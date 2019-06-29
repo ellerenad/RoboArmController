@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import roboarmcontroller.domain.dom.InstructionLabel;
 import roboarmcontroller.domain.dom.hands.Hand;
+import roboarmcontroller.domain.services.TrainingSetWriter;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -15,8 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class TrainingSetWriter {
-    private final Logger log = LoggerFactory.getLogger(TrainingSetWriter.class);
+public class TrainingSetWriterFile implements TrainingSetWriter {
+    private final Logger log = LoggerFactory.getLogger(TrainingSetWriterFile.class);
 
     private static final String OUTPUT_FILE_EXTENTION = ".txt";
 
@@ -25,10 +26,11 @@ public class TrainingSetWriter {
     String fileName;
     String fileStamp;
 
-    public TrainingSetWriter(@Value("${machine.learning.training.output.file.path}") String fileName) {
+    public TrainingSetWriterFile(@Value("${machine.learning.training.output.file.path}") String fileName) {
         this.fileName = fileName;
     }
 
+    @Override
     public void init() {
         fileStamp = String.valueOf(System.currentTimeMillis());
         fileName = this.fileName + fileStamp + OUTPUT_FILE_EXTENTION;
@@ -43,19 +45,23 @@ public class TrainingSetWriter {
         }
     }
 
+    @Override
     public void writeLine(Hand hand, InstructionLabel instructionLabel) {
         String handLine = this.getLine(hand);
         printWriter.printf("%s|%s\n", handLine, String.valueOf(instructionLabel.ordinal()));
     }
 
+    @Override
     public void terminate() {
         printWriter.close();
     }
 
+    @Override
     public String getFileName() {
         return fileName;
     }
 
+    @Override
     public String getFileStamp() {
         return fileStamp;
     }
