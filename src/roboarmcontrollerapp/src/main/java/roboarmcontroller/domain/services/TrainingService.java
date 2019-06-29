@@ -3,13 +3,17 @@ package roboarmcontroller.domain.services;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import roboarmcontroller.domain.dom.InstructionLabel;
 import roboarmcontroller.domain.dom.hands.HandType;
 import roboarmcontroller.domain.dom.hands.TrackingFrame;
 
+import javax.annotation.PostConstruct;
+
 @Service
-public class TrainingService {
+@Profile("training")
+public class TrainingService implements TrackingFrameProcessor {
     private final Logger log = LoggerFactory.getLogger(TrainingService.class);
     static int MAX_CYCLES = 1000;
 
@@ -25,7 +29,13 @@ public class TrainingService {
         this.exitService = exitService;
     }
 
+    @PostConstruct
+    public void afterInit() {
+        log.info("Running on Training Mode. Please place your hands over the sensor.");
+    }
 
+
+    @Override
     public void process(TrackingFrame trackingFrame) {
         switch (step) {
             case 0:

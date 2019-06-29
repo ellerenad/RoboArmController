@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import roboarmcontroller.domain.dom.hands.*;
 import roboarmcontroller.infrastructure.communication.input.dto.JsonTrackingFrame;
 import roboarmcontroller.infrastructure.communication.input.dto.JsonTrackingFrameParser;
-import roboarmcontroller.infrastructure.communication.parser.JsonToDomainMapper;
+import roboarmcontroller.infrastructure.communication.parser.DtoToDomainMapper;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,15 +16,15 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class JsonToDomainMapperTest {
+class DtoToDomainMapperTest {
 
-    JsonToDomainMapper jsonToDomainMapper;
+    DtoToDomainMapper dtoToDomainMapper;
 
     JsonTrackingFrameParser jsonTrackingFrameParser;
 
     @BeforeEach
     void setUp() {
-        this.jsonToDomainMapper = new JsonToDomainMapper();
+        this.dtoToDomainMapper = new DtoToDomainMapper();
         this.jsonTrackingFrameParser = new JsonTrackingFrameParser();
     }
 
@@ -33,7 +33,7 @@ class JsonToDomainMapperTest {
         String jsonToTest = readFileFromResources("json/oneHand.json");
         JsonTrackingFrame jsonTrackingFrame = jsonTrackingFrameParser.parse(jsonToTest);
 
-        TrackingFrame trackingFrame = this.jsonToDomainMapper.map(jsonTrackingFrame);
+        TrackingFrame trackingFrame = this.dtoToDomainMapper.map(jsonTrackingFrame);
 
         assertNotNull(trackingFrame);
         assertNotNull(trackingFrame.getHands());

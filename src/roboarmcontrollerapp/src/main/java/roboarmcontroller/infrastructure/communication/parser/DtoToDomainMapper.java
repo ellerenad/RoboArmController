@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class JsonToDomainMapper {
+public class DtoToDomainMapper {
 
     private static final FingerType[] FINGER_TYPES = FingerType.values();
 

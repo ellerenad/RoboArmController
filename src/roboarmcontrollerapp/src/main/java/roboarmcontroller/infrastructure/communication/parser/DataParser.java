@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import roboarmcontroller.domain.dom.hands.TrackingFrame;
-import roboarmcontroller.domain.services.InstructionService;
+import roboarmcontroller.domain.services.TrackingFrameProcessor;
 import roboarmcontroller.infrastructure.communication.input.dto.JsonTrackingFrame;
 import roboarmcontroller.infrastructure.communication.input.dto.JsonTrackingFrameParser;
 
@@ -20,14 +20,14 @@ public class DataParser {
     private final static BigInteger ZERO_BIG_INTEGER = BigInteger.valueOf(0);
 
     private JsonTrackingFrameParser jsonTrackingFrameParser;
-    private JsonToDomainMapper jsonToDomainMapper;
-    private InstructionService instructionService;
+    private DtoToDomainMapper dtoToDomainMapper;
+    private TrackingFrameProcessor trackingFrameProcessor;
 
     @Autowired
-    public DataParser(JsonTrackingFrameParser jsonTrackingFrameParser, JsonToDomainMapper jsonToDomainMapper, InstructionService instructionService) {
+    public DataParser(JsonTrackingFrameParser jsonTrackingFrameParser, DtoToDomainMapper dtoToDomainMapper, TrackingFrameProcessor trackingFrameProcessor) {
         this.jsonTrackingFrameParser = jsonTrackingFrameParser;
-        this.jsonToDomainMapper = jsonToDomainMapper;
-        this.instructionService = instructionService;
+        this.dtoToDomainMapper = dtoToDomainMapper;
+        this.trackingFrameProcessor = trackingFrameProcessor;
     }
 
     public void publish(String json) {
@@ -35,8 +35,8 @@ public class DataParser {
             JsonTrackingFrame jsonTrackingFrame = jsonTrackingFrameParser.parse(json);
 
             if (this.isValidMessage(jsonTrackingFrame)) {
-                TrackingFrame trackingFrame = jsonToDomainMapper.map(jsonTrackingFrame);
-                instructionService.process(trackingFrame);
+                TrackingFrame trackingFrame = dtoToDomainMapper.map(jsonTrackingFrame);
+                trackingFrameProcessor.process(trackingFrame);
             }
         } catch (Exception ex) {
             log.info("Exception on data publish.", ex);

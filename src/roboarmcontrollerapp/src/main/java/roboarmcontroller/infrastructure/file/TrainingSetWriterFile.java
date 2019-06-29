@@ -3,6 +3,7 @@ package roboarmcontroller.infrastructure.file;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import roboarmcontroller.domain.dom.InstructionLabel;
 import roboarmcontroller.domain.dom.hands.Hand;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@Profile("training")
 public class TrainingSetWriterFile implements TrainingSetWriter {
     private final Logger log = LoggerFactory.getLogger(TrainingSetWriterFile.class);
 

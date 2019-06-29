@@ -1,6 +1,7 @@
 package roboarmcontroller.infrastructure.classification;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.tensorflow.SavedModelBundle;
 import org.tensorflow.Session;
@@ -11,6 +12,7 @@ import roboarmcontroller.domain.dom.hands.Hand;
 import roboarmcontroller.domain.services.InstructionClassificationService;
 
 @Service
+@Profile("controlling")
 public class InstructionClassificationServiceTensorFlow implements InstructionClassificationService {
 
     public final static int FIELD_COUNT = 16;

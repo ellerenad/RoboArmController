@@ -3,7 +3,7 @@ package roboarmcontroller.domain.services;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import roboarmcontroller.domain.dom.Command;
 import roboarmcontroller.domain.dom.InstructionLabel;
@@ -17,46 +17,32 @@ import java.util.Optional;
 
 @SuppressWarnings("WeakerAccess")
 @Service
-public class InstructionService {
-    private final Logger log = LoggerFactory.getLogger(InstructionService.class);
+@Profile("controlling")
+public class SimulationControllerService implements TrackingFrameProcessor {
+    private final Logger log = LoggerFactory.getLogger(SimulationControllerService.class);
 
     private final int DELTA = 10;
     private SimulationGateway simulationGateway;
-    private TrainingService trainingService;
     private InstructionClassificationService instructionClassificationService;
 
-    private boolean trainingMode;
-
     @Autowired
-    public InstructionService(@Value("${execution.mode.training}") boolean trainingMode,
-                              SimulationGateway simulationGateway,
-                              TrainingService trainingService,
-                              InstructionClassificationService instructionClassificationService) {
+    public SimulationControllerService(SimulationGateway simulationGateway,
+                                       InstructionClassificationService instructionClassificationService) {
         this.simulationGateway = simulationGateway;
-        this.trainingService = trainingService;
         this.instructionClassificationService = instructionClassificationService;
-        this.trainingMode = trainingMode;
     }
 
     @PostConstruct
     public void afterInit() {
-        if (this.trainingMode) {
-            log.info("Running on Training Mode. Please place your hands over the sensor.");
-        } else {
-            log.info("Running on Controlling Mode. Please place your hands over the sensor.");
-        }
+        log.info("Running on Controlling Mode. Please place your hands over the sensor.");
     }
 
+    @Override
     public void process(TrackingFrame trackingFrame) {
-
-        if (this.trainingMode) {
-            this.trainingService.process(trackingFrame);
-        } else {
-            Optional<Command> commandParameters = this.buildParameters(trackingFrame);
-            if (commandParameters.isPresent()) {
-                log.debug("Processing TrackingFrame. Command = {}", commandParameters.get());
-                this.simulationGateway.send(commandParameters.get());
-            }
+        Optional<Command> commandParameters = this.buildParameters(trackingFrame);
+        if (commandParameters.isPresent()) {
+            log.debug("Processing TrackingFrame. Command = {}", commandParameters.get());
+            this.simulationGateway.send(commandParameters.get());
         }
     }
 
