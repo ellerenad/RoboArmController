@@ -2,7 +2,11 @@ package roboarmcontroller.domain.services;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import roboarmcontroller.domain.dom.*;
+import roboarmcontroller.domain.dom.InstructionLabel;
+import roboarmcontroller.domain.dom.hands.Finger;
+import roboarmcontroller.domain.dom.hands.FingerPosition;
+import roboarmcontroller.domain.dom.hands.Hand;
+import roboarmcontroller.domain.dom.hands.HandType;
 import roboarmcontroller.infrastructure.classification.InstructionClassificationServiceTensorFlow;
 
 import java.util.ArrayList;

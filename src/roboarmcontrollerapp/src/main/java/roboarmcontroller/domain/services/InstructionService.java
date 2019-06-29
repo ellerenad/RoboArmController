@@ -5,12 +5,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import roboarmcontroller.domain.dom.Hand;
-import roboarmcontroller.domain.dom.HandType;
+import roboarmcontroller.domain.dom.Command;
 import roboarmcontroller.domain.dom.InstructionLabel;
-import roboarmcontroller.domain.dom.TrackingFrame;
-import roboarmcontroller.domain.services.command.Command;
-import roboarmcontroller.domain.services.command.SimulationGateway;
+import roboarmcontroller.domain.dom.hands.Hand;
+import roboarmcontroller.domain.dom.hands.HandType;
+import roboarmcontroller.domain.dom.hands.TrackingFrame;
+import roboarmcontroller.domain.gateways.SimulationGateway;
 
 import javax.annotation.PostConstruct;
 import java.util.Optional;

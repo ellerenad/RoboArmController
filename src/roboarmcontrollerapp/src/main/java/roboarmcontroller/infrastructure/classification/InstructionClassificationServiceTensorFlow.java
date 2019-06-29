@@ -5,9 +5,9 @@ import org.springframework.stereotype.Service;
 import org.tensorflow.SavedModelBundle;
 import org.tensorflow.Session;
 import org.tensorflow.Tensor;
-import roboarmcontroller.domain.dom.Finger;
-import roboarmcontroller.domain.dom.Hand;
 import roboarmcontroller.domain.dom.InstructionLabel;
+import roboarmcontroller.domain.dom.hands.Finger;
+import roboarmcontroller.domain.dom.hands.Hand;
 import roboarmcontroller.domain.services.InstructionClassificationService;
 
 @Service

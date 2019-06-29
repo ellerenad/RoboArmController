@@ -1,4 +1,4 @@
-package roboarmcontroller.domain.services.command;
+package roboarmcontroller.domain.dom;
 
 @SuppressWarnings("WeakerAccess")
 public class Command {

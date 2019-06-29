@@ -3,11 +3,10 @@ package roboarmcontroller.domain.services;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import roboarmcontroller.domain.dom.HandType;
 import roboarmcontroller.domain.dom.InstructionLabel;
-import roboarmcontroller.domain.dom.TrackingFrame;
+import roboarmcontroller.domain.dom.hands.HandType;
+import roboarmcontroller.domain.dom.hands.TrackingFrame;
 import roboarmcontroller.infrastructure.file.TrainingSetWriter;
 
 @Service

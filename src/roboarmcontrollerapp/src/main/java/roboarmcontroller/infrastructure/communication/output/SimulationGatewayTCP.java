@@ -3,8 +3,8 @@ package roboarmcontroller.infrastructure.communication.output;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import roboarmcontroller.domain.services.command.Command;
-import roboarmcontroller.domain.services.command.SimulationGateway;
+import roboarmcontroller.domain.dom.Command;
+import roboarmcontroller.domain.gateways.SimulationGateway;
 
 import java.io.IOException;
 import java.io.OutputStream;

@@ -1,4 +1,4 @@
-package roboarmcontroller.domain.dom;
+package roboarmcontroller.domain.dom.hands;
 
 /**
  * This class is an abstraction of the position of the tip of the finger

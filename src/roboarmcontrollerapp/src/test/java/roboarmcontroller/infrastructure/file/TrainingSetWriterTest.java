@@ -2,10 +2,10 @@ package roboarmcontroller.infrastructure.file;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import roboarmcontroller.domain.dom.Finger;
-import roboarmcontroller.domain.dom.FingerPosition;
-import roboarmcontroller.domain.dom.Hand;
-import roboarmcontroller.domain.dom.HandType;
+import roboarmcontroller.domain.dom.hands.Finger;
+import roboarmcontroller.domain.dom.hands.FingerPosition;
+import roboarmcontroller.domain.dom.hands.Hand;
+import roboarmcontroller.domain.dom.hands.HandType;
 
 import java.util.Arrays;
 

@@ -1,10 +1,10 @@
 package roboarmcontroller.infrastructure.communication;
 
 import org.springframework.stereotype.Component;
+import roboarmcontroller.domain.dom.hands.*;
 import roboarmcontroller.infrastructure.communication.parser.JsonHand;
 import roboarmcontroller.infrastructure.communication.parser.JsonPointable;
 import roboarmcontroller.infrastructure.communication.parser.JsonTrackingFrame;
-import roboarmcontroller.domain.dom.*;
 
 import java.util.List;
 import java.util.stream.Collectors;

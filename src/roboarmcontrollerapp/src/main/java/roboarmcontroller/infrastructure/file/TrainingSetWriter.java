@@ -4,8 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import roboarmcontroller.domain.dom.Hand;
 import roboarmcontroller.domain.dom.InstructionLabel;
+import roboarmcontroller.domain.dom.hands.Hand;
 
 import java.io.File;
 import java.io.FileWriter;

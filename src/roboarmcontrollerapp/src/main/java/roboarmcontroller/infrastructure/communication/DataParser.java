@@ -4,10 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import roboarmcontroller.domain.dom.hands.TrackingFrame;
+import roboarmcontroller.domain.services.InstructionService;
 import roboarmcontroller.infrastructure.communication.parser.JsonTrackingFrame;
 import roboarmcontroller.infrastructure.communication.parser.JsonTrackingFrameParser;
-import roboarmcontroller.domain.dom.TrackingFrame;
-import roboarmcontroller.domain.services.InstructionService;
 
 import java.math.BigInteger;
 

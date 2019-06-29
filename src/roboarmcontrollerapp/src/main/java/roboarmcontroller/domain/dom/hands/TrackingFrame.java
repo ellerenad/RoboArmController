@@ -1,4 +1,4 @@
-package roboarmcontroller.domain.dom;
+package roboarmcontroller.domain.dom.hands;
 
 import java.math.BigInteger;
 import java.util.List;
