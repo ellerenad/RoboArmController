@@ -3,6 +3,7 @@ package roboarmcontroller.domain.services;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import roboarmcontroller.domain.dom.*;
+import roboarmcontroller.infrastructure.classification.InstructionClassificationServiceTensorFlow;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,16 +15,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 // TODO: Improve
 // Note: Asserting that all the predictions are what we expect is not the best way of testing:
 // Machine learning models rarely have 100% confidence - some degree of tolerance should be accepted
-class InstructionClassificationServiceTest {
+class InstructionClassificationServiceTensorFlowTest {
 
-    private static int FIELD_COUNT = InstructionClassificationService.FIELD_COUNT + 1;
+    private static int FIELD_COUNT = InstructionClassificationServiceTensorFlow.FIELD_COUNT + 1;
 
-    InstructionClassificationService instructionClassificationService;
+    InstructionClassificationServiceTensorFlow instructionClassificationServiceTensorFlow;
 
     @BeforeEach
     void setUp() {
         String savedModelPath = this.readFileFromResources("trainedModel");
-        this.instructionClassificationService = new InstructionClassificationService(savedModelPath);
+        this.instructionClassificationServiceTensorFlow = new InstructionClassificationServiceTensorFlow(savedModelPath);
     }
 
     @Test
@@ -42,7 +43,7 @@ class InstructionClassificationServiceTest {
 
             InstructionLabel expectedInstructionLabel = this.getInstructionLabelFromTrainingSetLine(line);
 
-            InstructionLabel instructionLabel = this.instructionClassificationService.classify(hand);
+            InstructionLabel instructionLabel = this.instructionClassificationServiceTensorFlow.classify(hand);
 
             assertEquals(expectedInstructionLabel, instructionLabel);
         });
@@ -64,7 +65,7 @@ class InstructionClassificationServiceTest {
 
             InstructionLabel expectedInstructionLabel = this.getInstructionLabelFromTrainingSetLine(line);
 
-            InstructionLabel instructionLabel = this.instructionClassificationService.classify(hand);
+            InstructionLabel instructionLabel = this.instructionClassificationServiceTensorFlow.classify(hand);
 
             assertEquals(expectedInstructionLabel, instructionLabel);
         });
@@ -86,7 +87,7 @@ class InstructionClassificationServiceTest {
 
             InstructionLabel expectedInstructionLabel = this.getInstructionLabelFromTrainingSetLine(line);
 
-            InstructionLabel instructionLabel = this.instructionClassificationService.classify(hand);
+            InstructionLabel instructionLabel = this.instructionClassificationServiceTensorFlow.classify(hand);
 
             assertEquals(expectedInstructionLabel, instructionLabel);
         });
@@ -108,7 +109,7 @@ class InstructionClassificationServiceTest {
 
             InstructionLabel expectedInstructionLabel = this.getInstructionLabelFromTrainingSetLine(line);
 
-            InstructionLabel instructionLabel = this.instructionClassificationService.classify(hand);
+            InstructionLabel instructionLabel = this.instructionClassificationServiceTensorFlow.classify(hand);
 
             assertEquals(expectedInstructionLabel, instructionLabel);
         });
@@ -130,7 +131,7 @@ class InstructionClassificationServiceTest {
 
             InstructionLabel expectedInstructionLabel = this.getInstructionLabelFromTrainingSetLine(line);
 
-            InstructionLabel instructionLabel = this.instructionClassificationService.classify(hand);
+            InstructionLabel instructionLabel = this.instructionClassificationServiceTensorFlow.classify(hand);
 
             assertEquals(expectedInstructionLabel, instructionLabel);
         });
