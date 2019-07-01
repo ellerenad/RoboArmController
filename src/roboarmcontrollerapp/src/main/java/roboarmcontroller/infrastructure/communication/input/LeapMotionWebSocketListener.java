@@ -26,7 +26,7 @@ public class LeapMotionWebSocketListener extends WebSocketClient {
 
     @PostConstruct
     public void startListener() {
-        log.info("Trying to connect tot: {}", this.getURI());
+        log.info("Trying to connect to: {}", this.getURI());
         connect();
     }
 
