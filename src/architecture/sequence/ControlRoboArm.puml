@@ -1,4 +1,5 @@
 @startuml
+title Controlling using Machine Learning
 actor User
 User -> SensorFramework: Inputs data
 SensorFramework -> RoboArmController: provides hand data
