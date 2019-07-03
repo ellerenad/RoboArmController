@@ -35,7 +35,7 @@ https://developer-archive.leapmotion.com/documentation/java/supplements/Leap_JSO
 
 ### Start the system:
 
-Execution mode
+####Machine Learning Controlling mode
 
 Each of the following commands on a different terminal 
 
@@ -49,11 +49,11 @@ Note: Do the cd and then start the sh script. There is an open issue regarding i
 cd RoboArmSimulation
 ./startGazeboSim.sh
 ```
-3- Start the class roboarmcontroller.Application (in IntelliJ) with the spring profile "controlling"
+3- Start the class roboarmcontroller.Application (in IntelliJ) with the spring profile "controllingML"
 
 
 
-Training mode:
+####Training mode:
 
 1- Start the leap motion framework
 ```bash
@@ -75,6 +75,21 @@ jupyter notebook
 
 6- Copy the path of the exported model to the property `training.input.exported.model.path` 
 
+####Simple Controlling Mode
+
+Each of the following commands on a different terminal 
+
+1- Start the leap motion framework
+```bash
+sudo leapd
+```
+2- Start the simulation
+Note: Do the cd and then start the sh script. There is an open issue regarding it.
+```bash
+cd RoboArmSimulation
+./startGazeboSim.sh
+```
+3- Start the class roboarmcontroller.Application (in IntelliJ) with the spring profile "controllingSimple"
 
 
 Note: There is a known issue making the simulation loading to halt unless data is provided, 

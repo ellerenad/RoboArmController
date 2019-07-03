@@ -17,24 +17,24 @@ import java.util.Optional;
 
 @SuppressWarnings("WeakerAccess")
 @Service
-@Profile("controlling")
-public class SimulationControllerService implements TrackingFrameProcessor {
-    private final Logger log = LoggerFactory.getLogger(SimulationControllerService.class);
+@Profile("controllingML")
+public class SimulationControllerMLService implements TrackingFrameProcessor {
+    private final Logger log = LoggerFactory.getLogger(SimulationControllerMLService.class);
 
     private final int DELTA = 10;
     private SimulationGateway simulationGateway;
     private InstructionClassificationService instructionClassificationService;
 
     @Autowired
-    public SimulationControllerService(SimulationGateway simulationGateway,
-                                       InstructionClassificationService instructionClassificationService) {
+    public SimulationControllerMLService(SimulationGateway simulationGateway,
+                                         InstructionClassificationService instructionClassificationService) {
         this.simulationGateway = simulationGateway;
         this.instructionClassificationService = instructionClassificationService;
     }
 
     @PostConstruct
     public void afterInit() {
-        log.info("Running on Controlling Mode. Please place your hands over the sensor.");
+        log.info("Running on Controlling Mode (Machine Learning). Please place your hands over the sensor.");
     }
 
     @Override
