@@ -1,0 +1,12 @@
+- Start leapd
+- Start jupyter
+- Start the visualizer
+- Prepare the execution of gazebo
+- Start the app in training mode
+- copy the file stamp to the python code
+- execute python code
+- copy the path of the exported model
+- start gazebo
+- start app in controlling ml mode
+- have fun :)
+
