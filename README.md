@@ -7,9 +7,11 @@ This is a controller for a Simulated Robotic Arm. With the help of a hands senso
 Here you can find a couple of youtube videos to show it working:
 
 Controlling
+
 [![Controlling](https://img.youtube.com/vi/hz7BYlV3m8k/0.jpg)](https://www.youtube.com/watch?v=hz7BYlV3m8k)
 
 Training and controlling steps
+
 [![Training and controlling steps](https://img.youtube.com/vi/deWE3Fv8uAE/0.jpg)](https://www.youtube.com/watch?v=deWE3Fv8uAE)
 
 Disclaimer: The arm seems to move slowly in the video, because of issues on the recording of the video itself.
