@@ -2,7 +2,7 @@
 
 Repository for the Roboarm controller. 
 
-This is a controller for a Simulated Robotic Arm. With the help of a hands sensor, we train a Machine Learning model to identify the position of the fingers of a person, and we use that to indicate a movement to the Robotic Arm. The main focus of this exercise is to learn the different technologies used for it: Gazebo, Kafka, Tensorflow, and Java.
+This is a controller for a Simulated Robotic Arm. With the help of a Leap Motion hands sensor, we train a Machine Learning model to identify the position of the fingers of a person, and we use that to indicate a movement to the Robotic Arm. The main focus of this exercise is to learn the different technologies used for it: Gazebo, Kafka, Tensorflow, and Java.
 
 Here you can find a couple of youtube videos to show it working:
 
