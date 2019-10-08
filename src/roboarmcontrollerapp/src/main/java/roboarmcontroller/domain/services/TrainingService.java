@@ -11,6 +11,9 @@ import roboarmcontroller.domain.dom.hands.TrackingFrame;
 
 import javax.annotation.PostConstruct;
 
+/**
+ * Orchestrates the creation of the training dataset and starts the training itself
+ */
 @Service
 @Profile("training")
 public class TrainingService implements TrackingFrameProcessor {
@@ -22,11 +25,13 @@ public class TrainingService implements TrackingFrameProcessor {
 
     TrainingSetWriter trainingSetWriter;
     ExitService exitService;
+    TrainingExecutor trainingExecutor;
 
     @Autowired
-    public TrainingService(TrainingSetWriter trainingSetWriter, ExitService exitService) {
+    public TrainingService(TrainingSetWriter trainingSetWriter, ExitService exitService, TrainingExecutor trainingExecutor) {
         this.trainingSetWriter = trainingSetWriter;
         this.exitService = exitService;
+        this.trainingExecutor = trainingExecutor;
     }
 
     @PostConstruct
@@ -102,8 +107,9 @@ public class TrainingService implements TrackingFrameProcessor {
                 } else {
                     cycle = 0;
                     step = 5;
-                    log.info("Training set written. File:{}. File stamp:{} . You can now train the model. Finalizing program.", trainingSetWriter.getFileName(), trainingSetWriter.getFileStamp());
+                    log.info("Training set written. File:{}. File stamp:{}", trainingSetWriter.getFileName(), trainingSetWriter.getFileStamp());
                     trainingSetWriter.terminate();
+                    trainingExecutor.train(trainingSetWriter.getFileName());
                     exitService.terminateProgram(0);
                 }
                 break;

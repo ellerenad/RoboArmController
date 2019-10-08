@@ -1,6 +1,5 @@
 package roboarmcontroller.domain.services;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service
