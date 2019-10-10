@@ -1,9 +1,11 @@
 package roboarmcontroller.domain.services;
 
+import roboarmcontroller.domain.dom.training.Evaluation;
+
 public interface TrainingExecutor {
     /**
      * Executes the training with a given framework.
-     * @param datasetName the name of the file containing the dataset to use for training
+     * @param datasetPath the name of the file containing the dataset to use for training
      */
-    void train(String datasetName);
+    Evaluation train(String datasetPath, String datasetIdentifier) throws Exception;
 }

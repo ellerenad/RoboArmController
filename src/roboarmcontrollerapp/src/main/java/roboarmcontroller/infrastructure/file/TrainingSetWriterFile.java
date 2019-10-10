@@ -28,8 +28,9 @@ public class TrainingSetWriterFile implements TrainingSetWriter {
     String fileName;
     String fileStamp;
 
-    public TrainingSetWriterFile(@Value("${machine.learning.training.output.file.path}") String fileName) {
-        this.fileName = fileName;
+    public TrainingSetWriterFile(@Value("${machine.learning.training.output.dataset.path}") String path,
+                                 @Value("${machine.learning.training.output.dataset.prefix}") String filePrefix) {
+        this.fileName = path + filePrefix;
     }
 
     @Override
