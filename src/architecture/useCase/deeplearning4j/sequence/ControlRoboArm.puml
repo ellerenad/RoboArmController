@@ -1,0 +1,16 @@
+@startuml
+title Controlling using Machine Learning
+actor User
+User -> SensorFramework: Inputs data
+SensorFramework -> RoboArmController: provides hand data
+RoboArmController -> RoboArmController: transforms data
+RoboArmController-> Deeplearning4jFramework: classify left hand data
+Deeplearning4jFramework --> RoboArmController: instruction label
+note right: The left hand defines the servoId to move
+RoboArmController-> Deeplearning4jFramework: classify right hand data
+Deeplearning4jFramework --> RoboArmController: instruction label
+note right: The right hand defines a positive or negative constant delta
+RoboArmController -> RoboArmSimulation: sends instruction (ServoId,Delta)
+RoboArmSimulation -> RoboArmSimulation: processes data and\n updates simulation visualization
+RoboArmSimulation --> User: shows updated simulation
+@enduml
