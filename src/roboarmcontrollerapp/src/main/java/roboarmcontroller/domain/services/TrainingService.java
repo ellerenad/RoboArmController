@@ -109,8 +109,13 @@ public class TrainingService implements TrackingFrameProcessor {
                     step = 5;
                     log.info("Training set written. File:{}. File stamp:{}", trainingSetWriter.getFileName(), trainingSetWriter.getFileStamp());
                     trainingSetWriter.terminate();
-                    trainingExecutor.train(trainingSetWriter.getFileName());
-                    exitService.terminateProgram(0);
+                    try {
+                        trainingExecutor.train(trainingSetWriter.getFileName(), trainingSetWriter.getFileStamp());
+                    } catch(Exception ex){
+                        log.error("Exception:", ex);
+                    } finally {
+                        exitService.terminateProgram(0);
+                    }
                 }
                 break;
 
