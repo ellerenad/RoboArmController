@@ -33,9 +33,12 @@ class TrainingServiceTest {
     }
 
     @Test
-    void test_process() {
+    void test_process() throws Exception {
         String fileName = "fileName";
         when(trainingSetWriterMock.getFileName()).thenReturn(fileName);
+
+        String fileStamp = "123456";
+        when(trainingSetWriterMock.getFileStamp()).thenReturn(fileStamp);
 
         Hand leftHand = new Hand();
         leftHand.setType(HandType.LEFT);
@@ -68,7 +71,7 @@ class TrainingServiceTest {
 
         trainingService.process(trackingFrame);
         verify(trainingSetWriterMock, atLeastOnce()).getFileName();
-        verify(trainingExecutorMock).train(eq(fileName));
+        verify(trainingExecutorMock).train(eq(fileName), eq(fileStamp));
         verify(trainingSetWriterMock, times(1)).terminate();
         verify(exitServiceMock, times(1)).terminateProgram(0);
     }
