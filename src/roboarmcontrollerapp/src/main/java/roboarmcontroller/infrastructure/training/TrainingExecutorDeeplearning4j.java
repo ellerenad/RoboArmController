@@ -104,6 +104,7 @@ public class TrainingExecutorDeeplearning4j  implements TrainingExecutor {
 
         // Evaluate Neural Network
         Evaluation evaluation = evaluate(model, testData);
+        logger.info(evaluation.stats());
         return map(evaluation);
     }
 
