@@ -99,7 +99,7 @@ public class TrainingExecutorDeeplearning4j  implements TrainingExecutor {
         //model.fit(trainingData); // This won't work. You kidding me? maybe because of the normalization?
 
         // Save the model and the normalizer
-        String modelOutputPath =  modelOutputBasePath + "/"+ datasetIdentifier + "/";
+        String modelOutputPath = modelOutputBasePath + datasetIdentifier + "/";
         store(model, normalizer, modelOutputPath);
 
         // Evaluate Neural Network

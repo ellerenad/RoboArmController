@@ -25,7 +25,7 @@ public class InstructionClassificationServiceTensorFlow implements InstructionCl
 
     String savedModelPath;
 
-    public InstructionClassificationServiceTensorFlow(@Value("${machine.learning.controlling.tensorflow.input.exported.model.path}") String savedModelPath) {
+    public InstructionClassificationServiceTensorFlow(@Value("${machine.learning.controlling.input.exported.model.path}") String savedModelPath) {
         this.savedModelPath = savedModelPath;
     }
 

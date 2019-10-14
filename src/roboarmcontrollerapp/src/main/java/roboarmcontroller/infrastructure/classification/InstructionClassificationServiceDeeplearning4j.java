@@ -31,7 +31,7 @@ public class InstructionClassificationServiceDeeplearning4j implements Instructi
     private DataNormalization dataNormalizer;
     private InstructionLabel[] instructionLabels;
 
-    public InstructionClassificationServiceDeeplearning4j(@Value("${machine.learning.controlling.deeplearning4j.input.exported.model.path}") String savedModelBasePath) throws Exception {
+    public InstructionClassificationServiceDeeplearning4j(@Value("${machine.learning.controlling.input.exported.model.path}") String savedModelBasePath) throws Exception {
         model = loadModel(savedModelBasePath);
         dataNormalizer = loadNormalizer(savedModelBasePath);
         instructionLabels = InstructionLabel.values();
