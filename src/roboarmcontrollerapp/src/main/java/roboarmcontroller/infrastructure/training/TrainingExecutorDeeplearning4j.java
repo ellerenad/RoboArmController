@@ -69,9 +69,9 @@ public class TrainingExecutorDeeplearning4j  implements TrainingExecutor {
      * @throws Exception
      */
     @Override
-    // TODO: Check the path of the file
     public roboarmcontroller.domain.dom.training.Evaluation train(String datasetPath, String datasetIdentifier) throws Exception {
 
+        logger.info("Loading dataset from {}", datasetPath);
         // Load data
         DataSet allData = loadData(datasetPath);
 
