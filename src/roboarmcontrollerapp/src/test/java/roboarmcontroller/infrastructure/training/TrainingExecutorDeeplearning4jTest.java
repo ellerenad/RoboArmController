@@ -18,9 +18,9 @@ import static org.hamcrest.Matchers.greaterThan;
 @Ignore
 class TrainingExecutorDeeplearning4jTest {
 
-    private static final String DATASET_IDENTIFIER = "1571087156311";
+    private static final String DATASET_IDENTIFIER = "1559827006805";
     private static final String DATASET_PATH = "../../trainingAssets/sets/trainingSet_" + DATASET_IDENTIFIER + ".txt";
-    private static final String MODEL_OUTPUT_BASE_PATH = "trainingAssets/models/deeplearning4j/";
+    private static final String MODEL_OUTPUT_BASE_PATH = "../../trainingAssets/models/deeplearning4j/";
 
 
     TrainingExecutorDeeplearning4j trainingExecutorDeeplearning4j;
