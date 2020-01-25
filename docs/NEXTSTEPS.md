@@ -25,3 +25,22 @@ cd RoboArmSimulation
 ./startGazeboSim.sh
 ```
 
+------------------------------------------------
+
+- add a shortcut to perform the training again on a given dataset and store it on the right place for loading it later 
+    -> taken as an example the dataset 1571087156311, it got the following awful stats:
+    ========================Evaluation Metrics========================
+     # of classes:    5
+     Accuracy:        0.5219
+     Precision:       0.6009	(1 class excluded from average)
+     Recall:          0.5377
+     F1 Score:        0.5623	(1 class excluded from average)
+    Precision, recall & F1: macro-averaged (equally weighted avg. of 5 classes) 
+    
+  - FIXME Fix the path where the model is stored after 
+  
+
+- consider adding a gitignore for the jupyter checkpoint file
+- Migrate to tensorflow 2.0
+
+------------------------

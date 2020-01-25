@@ -1,0 +1,51 @@
+@startuml
+
+package "Sensor Framework" {
+    component "HandDataProducer" as HandDataProducer
+}
+
+interface "\nWebSocket" as WebSocketServer
+HandDataProducer - WebSocketServer
+
+package "RoboArmController" {
+    component "LeapMotionWebSocketListener" as WebSocketClient
+    component "DataParser" as DataParser
+    component "TrackingFrameProcessor" as TrackingFrameProcessor
+    component "TrainingExecutor" as ModelGenerator
+    component "SimulationGateway" as SimulationGateway
+
+    WebSocketServer )- WebSocketClient
+    WebSocketClient -> DataParser: calls
+    DataParser -> TrackingFrameProcessor: calls
+    TrackingFrameProcessor -> SimulationGateway: calls
+}
+
+interface "TCP\nSocket" as SocketServer
+SimulationGateway -( SocketServer
+
+package "Deeplearning4j Framework" {
+    component "Deeplearning4j Framework" as MLFramework
+    TrackingFrameProcessor -> MLFramework: uses
+
+}
+
+ModelGenerator ---> MLFramework: uses
+
+
+
+TrackingFrameProcessor --> ModelGenerator
+
+
+package RoboArmSimulation {
+    component "Server" as InstructionServer
+    component "Gazebo Simulation" as Simulation
+    component "RoboArmPlugin" as ControllerPlugin
+
+    InstructionServer -> ControllerPlugin: calls
+    ControllerPlugin -> Simulation: controls
+    SocketServer - InstructionServer
+}
+
+
+
+@enduml

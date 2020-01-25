@@ -12,7 +12,7 @@ import roboarmcontroller.domain.dom.hands.Hand;
 import roboarmcontroller.domain.services.InstructionClassificationService;
 
 @Service
-@Profile("controllingML")
+@Profile("controllingML & tensorflow")
 public class InstructionClassificationServiceTensorFlow implements InstructionClassificationService {
 
     public final static int FIELD_COUNT = 16;

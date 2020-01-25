@@ -11,7 +11,9 @@ public class TrackingFrame {
     private BigInteger timestamp;
 
     public Optional<Hand> getHand(HandType handType) {
-        return this.hands.stream().filter(hand -> hand.getType().equals(handType)).findFirst();
+        return this.hands.stream()
+                .filter(hand -> hand.getType().equals(handType))
+                .findFirst();
     }
 
 

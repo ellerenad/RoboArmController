@@ -1,0 +1,20 @@
+@startuml
+title Training Process: Generate Dataset, Train and Export Model
+actor User
+User -> SensorFramework: Inputs data
+activate SensorFramework
+SensorFramework -> RoboArmController: provides hand data
+activate RoboArmController
+RoboArmController -> RoboArmController: transforms data
+RoboArmController -> RoboArmController: writes training dataset to a file
+deactivate SensorFramework
+RoboArmController -> RoboArmController: Starts the training with the dataset
+RoboArmController -> Deeplearning4jFramework : Configures model, provides data
+activate Deeplearning4jFramework
+Deeplearning4jFramework -> Deeplearning4jFramework: trains Machine Learning model
+Deeplearning4jFramework --> RoboArmController: returns reference to the trained assets
+RoboArmController -> Deeplearning4jFramework: request to export the trained assets
+Deeplearning4jFramework --> User: logs  path to trained model
+deactivate Deeplearning4jFramework
+deactivate RoboArmController
+@enduml

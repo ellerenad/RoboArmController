@@ -19,7 +19,7 @@ class TrainingSetWriterFileTest {
     @BeforeEach
     void setUp() {
         // TODO: Fix the path of the file if unit testing the actual writing
-        this.trainingSetWriter = new TrainingSetWriterFile("");
+        this.trainingSetWriter = new TrainingSetWriterFile("","");
     }
 
     @Test
