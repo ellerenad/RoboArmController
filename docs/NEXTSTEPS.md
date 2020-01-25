@@ -39,8 +39,8 @@ cd RoboArmSimulation
     
   - FIXME Fix the path where the model is stored after 
   
-- Test tensorflow whole lifecycle
-- consider adding a gitignore for the jupyter checkpoint file
 
+- consider adding a gitignore for the jupyter checkpoint file
+- Migrate to tensorflow 2.0
 
 ------------------------
