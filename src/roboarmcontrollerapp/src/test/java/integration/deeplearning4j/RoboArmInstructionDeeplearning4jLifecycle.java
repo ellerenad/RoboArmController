@@ -28,7 +28,7 @@ public class RoboArmInstructionDeeplearning4jLifecycle {
     void testLifecycle() throws Exception {
         try {
             // Test training and evaluate model
-            String modelOutputBasePath = "deeplearning4jTestModels/trainedModel";
+            String modelOutputBasePath = "deeplearning4jTestModels/trainedModel/";
             TrainingExecutorDeeplearning4j roboArmInstructionModelTrainer = new TrainingExecutorDeeplearning4j(modelOutputBasePath);
 
             String dataSetPath = this.getPathFromResources("deeplearning4j/dataset/trainingSet_1559827006805.txt");
@@ -39,7 +39,7 @@ public class RoboArmInstructionDeeplearning4jLifecycle {
             assertThat("Precision should be greater than 0.9", modelEvaluation.getPrecision(), greaterThan(0.9));
 
             // Test loading the model and perform some predictions
-            String savedModelBasePath = modelOutputBasePath + "/" + datasetIdentifier + "/";
+            String savedModelBasePath = modelOutputBasePath + datasetIdentifier + "/";
             // The model is loaded on the constructor
             InstructionClassificationServiceDeeplearning4j roboArmInstructionClassifier = new InstructionClassificationServiceDeeplearning4j(savedModelBasePath);
             assertPredictions(roboArmInstructionClassifier);
