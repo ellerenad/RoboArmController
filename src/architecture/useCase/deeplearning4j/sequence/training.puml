@@ -17,4 +17,5 @@ RoboArmController -> Deeplearning4jFramework: request to export the trained asse
 Deeplearning4jFramework --> User: logs  path to trained model
 deactivate Deeplearning4jFramework
 deactivate RoboArmController
+hide footbox
 @enduml
